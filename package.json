@@ -1,0 +1,15 @@
+{
+  "name": "com.musab.codebase",
+  "version": "1.0.0",
+  "displayName": "Code Base",
+  "description": "This is a code base for general use",
+  "unity": "2019.1",
+  "keywords": [
+    "code-base"
+  ],
+  "author": {
+    "name": "Musab Kara",
+    "email": "musabkara1990@gmail.com",
+    "url": "https://www.linkedin.com/in/musab-kara-85580612a/"
+  }
+}
