@@ -10,4 +10,6 @@ namespace EventSystem
         public KeyCode Key;
         public UnityEvent Event;
     }
+
 }
+

@@ -10,5 +10,4 @@ namespace EventSystem
                 data.Event?.Invoke();
         }
     }
-
 }

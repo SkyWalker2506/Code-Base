@@ -5,7 +5,6 @@ namespace EventSystem
     public abstract class KeyEvent : MonoBehaviour
     {
         [SerializeField] protected KeyEventData[] keyEventDatas;
-
         private void Update()
         {
 

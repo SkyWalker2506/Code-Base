@@ -2,13 +2,14 @@
 
 namespace EventSystem
 {
-    public class KeyDownEvent : KeyEvent
-    {
-        protected override void TryCallingEvent(KeyEventData data)
+        public class KeyDownEvent : KeyEvent
         {
-            if (Input.GetKeyDown(data.Key))
-                data.Event?.Invoke();
+            protected override void TryCallingEvent(KeyEventData data)
+            {
+                if (Input.GetKeyDown(data.Key))
+                    data.Event?.Invoke();
+            }
         }
-    }
+ 
 
 }
