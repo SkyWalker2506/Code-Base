@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
 namespace EventSystem
 {
+    [Serializable]
     public struct TimeEventData
     {
         public bool InitializeOnStart;

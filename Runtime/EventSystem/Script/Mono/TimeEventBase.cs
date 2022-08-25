@@ -1,13 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace EventSystem
 {
-    public abstract class TimeEventBase : MonoBehaviour, ITimeEvent
+    [Serializable]
+    public class TimeEventBase : ITimeEvent
     {
         [SerializeField] TimeEventData timeEventData;
 
         public TimeEventData Data => timeEventData;
-        public float currentTime;
+        float currentTime;
     
         public void Initialize()
         {
