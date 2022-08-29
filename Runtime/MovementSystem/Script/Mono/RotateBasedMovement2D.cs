@@ -15,7 +15,7 @@ public class RotateBasedMovement2D : MonoBehaviour, ICanMove2D, ICanTurn
     public void MoveForward()
     {
         if (moveSpeed)
-            transform.Translate(Vector3.up * moveSpeed.Value * Time.deltaTime);
+            transform.Translate(Vector3.forward * moveSpeed.Value * Time.deltaTime);
     }
 
     public void MoveLeft()
@@ -30,12 +30,12 @@ public class RotateBasedMovement2D : MonoBehaviour, ICanMove2D, ICanTurn
 
     public void TurnLeft()
     {
-        if(turnSpeed)
-            transform.Rotate(Vector3.forward, turnSpeed.Value*Time.deltaTime);
+        if (turnSpeed)
+            transform.Rotate(Vector3.up, turnSpeed.Value * Time.deltaTime);
     }
 
     public void TurnRight()
     {
-        transform.Rotate(Vector3.forward, -turnSpeed.Value * Time.deltaTime);
+        transform.Rotate(Vector3.up, -turnSpeed.Value * Time.deltaTime);
     }
 }
