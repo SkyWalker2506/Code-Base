@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EventSystem
 {
-
-    public class RayEvent : MonoBehaviour
+    [CreateAssetMenu(menuName = "ScriptableRayEvent")]
+    public class ScriptableRayEvent : ScriptableObject
     {
         [SerializeField] RayEventLogic logic = new RayEventLogic();
 
         public void CallRayEvent(Vector3 startPos, Vector3 target)
         {
-            logic.CallRayEvent(startPos,target);
+            logic.CallRayEvent(startPos, target);
         }
 
         public void CallRayEvent(Vector3 target)
