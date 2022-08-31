@@ -5,10 +5,10 @@ using UnityEngine.Events;
 namespace EventSystem
 {
     [Serializable]
-    public struct KeyEventData
+    public struct RayEventData
     {
-        public KeyCode Key;
-        public UnityEvent Event;
+        public LayerMask RayLayer;
+        public UnityEvent<RaycastHit> Event;
     }
 }
 

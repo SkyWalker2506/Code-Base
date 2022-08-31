@@ -7,7 +7,6 @@ namespace EventSystem
         [SerializeField] protected KeyEventData[] keyEventDatas;
         private void Update()
         {
-
             foreach (var data in keyEventDatas)
             {
                 TryCallingEvent(data);
