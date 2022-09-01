@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EventSystem
+namespace EventSystem.KeyEvent
 {
     public abstract class KeyEvent : MonoBehaviour
     {

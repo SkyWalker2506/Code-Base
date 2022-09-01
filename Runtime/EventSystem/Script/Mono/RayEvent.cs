@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EventSystem
+namespace EventSystem.RayEvent
 {
 
     public class RayEvent : MonoBehaviour

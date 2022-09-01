@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EventSystem
+namespace EventSystem.KeyEvent
 {
     public class KeyHoldEvent : KeyEvent
     {
@@ -10,5 +10,4 @@ namespace EventSystem
                 data.Event?.Invoke();
         }
     }
-
 }

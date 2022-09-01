@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem
+namespace EventSystem.KeyEvent
 {
     [Serializable]
     public struct KeyEventData
@@ -10,5 +10,9 @@ namespace EventSystem
         public KeyCode Key;
         public UnityEvent Event;
     }
+}
+
+namespace EventSystem.MouseEvent
+{
 }
 

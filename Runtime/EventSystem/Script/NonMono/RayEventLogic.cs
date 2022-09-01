@@ -1,13 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EventSystem
+namespace EventSystem.RayEvent
 {
     [Serializable]
-    public class RayEventLogic 
+    public class RayEventLogic : IRayEvent 
     {
 
         [SerializeField] RayEventData[] rayEventDatas;
+        
+        public void CallRayEvent(Vector3 target)
+        {
+            CallRayEvent(Camera.main.transform.position, target);
+        }
         public void CallRayEvent(Vector3 startPos, Vector3 target)
         {
             RaycastHit hit;
@@ -19,11 +24,6 @@ namespace EventSystem
                     data.Event?.Invoke(hit);
                 }
             }
-        }
-
-        public void CallRayEvent(Vector3 target)
-        {
-            CallRayEvent(Camera.main.transform.position, target);
         }
 
     }
