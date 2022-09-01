@@ -7,7 +7,7 @@ namespace EventSystem.RayEvent
     public class RayEventLogic : IRayEvent 
     {
 
-        [SerializeField] RayEventData[] rayEventDatas;
+        public RayEventData[] RayEventDatas;
         
         public void CallRayEvent(Vector3 target)
         {
@@ -17,7 +17,7 @@ namespace EventSystem.RayEvent
         {
             RaycastHit hit;
             var direction = (target - startPos).normalized;
-            foreach (var data in rayEventDatas)
+            foreach (var data in RayEventDatas)
             {
                 if (Physics.Raycast(startPos, direction, out hit, Mathf.Infinity, data.RayLayer))
                 {

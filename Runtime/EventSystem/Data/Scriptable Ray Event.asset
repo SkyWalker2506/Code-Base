@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2ef4d089feb444c9efccfef6bf8785, type: 3}
   m_Name: Scriptable Ray Event
   m_EditorClassIdentifier: 
-  logic:
-    rayEventDatas:
+  Logic:
+    RayEventDatas:
     - RayLayer:
         serializedVersion: 2
         m_Bits: 4294967295

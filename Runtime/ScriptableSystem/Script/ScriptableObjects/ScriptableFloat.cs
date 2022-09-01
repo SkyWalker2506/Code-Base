@@ -8,7 +8,6 @@ public class ScriptableFloat : ScriptableObject
     public float Value => value;
     public UnityEvent<float> OnValueChanged;
 
-
     private void OnValidate()
     {
         OnValueChanged?.Invoke(value);
@@ -18,6 +17,11 @@ public class ScriptableFloat : ScriptableObject
     {
         value = newValue;
         OnValueChanged?.Invoke(value);
+    }
+
+    public UnityEvent<float> OnValueChangedTest()
+    {
+        return OnValueChanged;
     }
 
 }

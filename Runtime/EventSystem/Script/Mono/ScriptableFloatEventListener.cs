@@ -3,24 +3,18 @@ using UnityEngine.Events;
 
 namespace EventSystem
 {
-    public class ScriptableFloatEventListener : MonoBehaviour
+    public class ScriptableFloatEventListener : ScriptableEventListener<float>
     {
         [SerializeField] ScriptableFloat scriptableFloat;
-        [SerializeField] UnityEvent<float> OnChanged;
-        
-        void OnEnable()
+
+        protected override void SetEvent()
         {
-            scriptableFloat.OnValueChanged.AddListener(OnValueChanged);
+            scriptableFloat.OnValueChanged.AddListener(scriptableEvent.Invoke);
         }
 
-        void OnDisable()
+        protected override void UnsetEvent()
         {
-            scriptableFloat.OnValueChanged.RemoveListener(OnValueChanged);
-        }
-
-        void OnValueChanged(float value)
-        {
-            OnChanged?.Invoke(value);
+            scriptableFloat.OnValueChanged.RemoveListener(scriptableEvent.Invoke);
         }
     }
 }
