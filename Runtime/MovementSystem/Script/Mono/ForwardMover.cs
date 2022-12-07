@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ForwardMover : MonoBehaviour, ICanMove2D
+public class ForwardMover : MonoBehaviour, IMove2D
 {
     [SerializeField] ScriptableFloat forwardSpeed;
 

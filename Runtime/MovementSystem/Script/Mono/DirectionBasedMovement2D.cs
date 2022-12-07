@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DirectionBasedMovement2D : MonoBehaviour, ICanMove2D
+public class DirectionBasedMovement2D : MonoBehaviour, IMove2D
 {
     [SerializeField] ScriptableFloat horizontalSpeed;
     [SerializeField] ScriptableFloat verticalSpeed;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateBasedMovement2D : MonoBehaviour, ICanMove2D, ICanTurn
+public class RotateBasedMovement2D : MonoBehaviour, IMove2D, ICanTurn
 {
     [SerializeField] ScriptableFloat turnSpeed;
     [SerializeField] ScriptableFloat moveSpeed;
