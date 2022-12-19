@@ -5,5 +5,5 @@ using UnityEngine.Events;
 
 public class Event : IEvent
 {
-    public UnityEvent Action { get; set; }
+    public UnityEvent Action { get; set; } = new UnityEvent();
 }

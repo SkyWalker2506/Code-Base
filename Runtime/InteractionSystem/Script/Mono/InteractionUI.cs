@@ -18,6 +18,7 @@ namespace InteractionSystem
 
         public void ShowInteractionUI(IInteractable interactable)
         {
+            UIParent.SetActive(true);
             if (interactable.InteractionText == "")
             {
                 interactionTextObject.SetText(interactable.InteractionText);
@@ -27,5 +28,35 @@ namespace InteractionSystem
                 interactionTextObject.SetText(defaultInteractionText);
             }
         }
+
+        public void HideInteractionUI()
+        {
+            UIParent.SetActive(false);
+        }
     }
+
+    public interface IInteractor
+    {
+        public InteractionUI InteractionUI { get;  }
+        public void Interact(IInteractable interactable);
+        public IInteractable GetInteractable();
+    }
+
+    public abstract class Interactor : IInteractor
+    {
+        public InteractionUI InteractionUI
+        {
+            get { return InteractionUI.Instance; }
+        } 
+
+        public void Interact(IInteractable interactable)
+        {
+            interactable.Interact();
+        }
+
+        public abstract IInteractable GetInteractable();
+
+    }
+    
+    
 }
