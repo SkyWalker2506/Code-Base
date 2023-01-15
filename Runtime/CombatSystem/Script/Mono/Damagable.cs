@@ -3,20 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Damagable : MonoBehaviour,IDamagable
+namespace CombatSystem
 {
-    public static Dictionary<GameObject,Damagable> Damagables= new Dictionary<GameObject, Damagable>();
-    public Action<int> OnDamaged { get; set; }
-
-    private void Awake()
+    public class Damagable : MonoBehaviour, IDamagable
     {
-        Damagables.Add(gameObject,this);
-    }
+        public static Dictionary<GameObject, Damagable> Damagables = new Dictionary<GameObject, Damagable>();
+        public Action<int> OnDamaged { get; set; }
 
-    public void ApplyDamage(int damage)
-    {
-        OnDamaged?.Invoke(damage);
+        private void Awake()
+        {
+            Damagables.Add(gameObject, this);
+        }
+
+        public void ApplyDamage(int damage)
+        {
+            OnDamaged?.Invoke(damage);
+        }
     }
 }
-

@@ -1,4 +1,7 @@
-public interface ICanAttack
+namespace CombatSystem
 {
-    public void Attack();
+    public interface ICanAttack
+    {
+        public void Attack();
+    }
 }

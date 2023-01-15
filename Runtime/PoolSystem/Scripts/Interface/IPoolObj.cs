@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public interface IPoolObj
+namespace PoolSystem
 {
-    Transform Transform { get; }
-    IPool Pool { get; set; }
-    void Release();
+    public interface IPoolObj
+    {
+        Transform Transform { get; }
+        IPool Pool { get; set; }
+        void Release();
 
+    }
 }

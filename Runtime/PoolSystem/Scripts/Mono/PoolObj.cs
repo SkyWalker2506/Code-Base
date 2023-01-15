@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class PoolObj : MonoBehaviour, IPoolObj
+namespace PoolSystem
 {
-    public Transform Transform => transform;
-
-    public IPool Pool { get; set; }
-
-    public void Release()
+    public class PoolObj : MonoBehaviour, IPoolObj
     {
-        Pool.Return(this);
+        public Transform Transform => transform;
+
+        public IPool Pool { get; set; }
+
+        public void Release()
+        {
+            Pool.Return(this);
+        }
     }
 }

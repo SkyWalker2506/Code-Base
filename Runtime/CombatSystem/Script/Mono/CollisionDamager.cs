@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public class CollisionDamager : Damager
+namespace CombatSystem
 {
-    private void OnCollisionEnter(Collision collision)
+    public class CollisionDamager : Damager
     {
-        if (Damagable.Damagables.ContainsKey(collision.gameObject))
-            ApplyDamage(Damagable.Damagables[collision.gameObject]);
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (Damagable.Damagables.ContainsKey(collision.gameObject))
+                ApplyDamage(Damagable.Damagables[collision.gameObject]);
+        }
     }
 }

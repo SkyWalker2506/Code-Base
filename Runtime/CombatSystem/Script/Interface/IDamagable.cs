@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable 
+namespace CombatSystem
 {
-    Action<int> OnDamaged { get; set; }
+    public interface IDamagable
+    {
+        Action<int> OnDamaged { get; set; }
 
-    void ApplyDamage(int damage);
+        void ApplyDamage(int damage);
+    }
 }
