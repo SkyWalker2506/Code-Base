@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     public class ScriptableFloatEventListener : ScriptableEventListener<float>
     {

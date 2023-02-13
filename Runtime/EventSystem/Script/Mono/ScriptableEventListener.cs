@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     public abstract class ScriptableEventListener<T> : MonoBehaviour
     {

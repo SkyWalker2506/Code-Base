@@ -1,8 +1,8 @@
-﻿using EventSystem.RayEvent;
+﻿using CodeBase.EventSystem.RayEvent;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     public class ScriptableRaycastHitEventListener : ScriptableEventListener<RaycastHit>
     {

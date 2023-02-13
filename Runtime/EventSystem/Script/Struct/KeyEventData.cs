@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem.KeyEvent
+namespace CodeBase.EventSystem.KeyEvent
 {
     [Serializable]
     public struct KeyEventData

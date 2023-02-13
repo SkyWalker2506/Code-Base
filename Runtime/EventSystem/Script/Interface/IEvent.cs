@@ -1,6 +1,9 @@
 using UnityEngine.Events;
 
-public interface IEvent
+namespace CodeBase.EventSystem
 {
-    UnityEvent Action { get; set; }
+    public interface IEvent
+    {
+        UnityEvent Action { get; set; }
+    }
 }

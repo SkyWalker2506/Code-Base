@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EventSystem.RayEvent
+namespace CodeBase.EventSystem.RayEvent
 {
     [Serializable]
     public class RayEventLogic : IRayEvent 

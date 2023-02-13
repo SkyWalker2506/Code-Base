@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     public class TimeEvent : MonoBehaviour
     {

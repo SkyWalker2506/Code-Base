@@ -1,7 +1,7 @@
-﻿using EventSystem.RayEvent;
+﻿using CodeBase.EventSystem.RayEvent;
 using UnityEngine;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     public class ScriptableRaycastHitPositionEventListener : ScriptableEventListener<Vector3>
     {

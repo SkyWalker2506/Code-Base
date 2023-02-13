@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EventSystem.RayEvent
+namespace CodeBase.EventSystem.RayEvent
 {
     [CreateAssetMenu(menuName = "ScriptableRayEvent")]
     public class ScriptableRayEvent : ScriptableObject,IRayEvent

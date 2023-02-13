@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace EventSystem.MouseEvent
+namespace CodeBase.EventSystem.MouseEvent
 {
     public class MouseHoldEvent : MouseEvent
     {

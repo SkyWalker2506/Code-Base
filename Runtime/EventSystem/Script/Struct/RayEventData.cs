@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem.RayEvent
+namespace CodeBase.EventSystem.RayEvent
 {
     [Serializable]
     public struct RayEventData

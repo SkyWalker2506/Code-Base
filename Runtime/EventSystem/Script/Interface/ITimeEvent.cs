@@ -1,4 +1,6 @@
-﻿namespace EventSystem
+﻿using EventSystem;
+
+namespace CodeBase.EventSystem
 {
     public interface ITimeEvent 
     {

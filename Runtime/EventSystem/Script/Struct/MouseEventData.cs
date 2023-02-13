@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem.MouseEvent
+namespace CodeBase.EventSystem.MouseEvent
 {
     [Serializable]
     public struct MouseEventData

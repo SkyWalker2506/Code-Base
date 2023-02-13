@@ -1,7 +1,8 @@
 ﻿using System;
+using EventSystem;
 using UnityEngine;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     [Serializable]
     public class TimeEventBase : ITimeEvent

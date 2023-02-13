@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace EventSystem.MouseEvent
+namespace CodeBase.EventSystem.MouseEvent
 {
     [CreateAssetMenu(menuName = "ScreenSpaceToWorldSpaceConverter")]
     public class ScreenSpaceToWorldSpaceConverter : ScriptableObject

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EventSystem.KeyEvent
+namespace CodeBase.EventSystem.KeyEvent
 {
     public class KeyUpEvent : KeyEvent
     {
