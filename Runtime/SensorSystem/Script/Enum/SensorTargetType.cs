@@ -2,6 +2,8 @@
 {
     public enum SensorTargetType
     {
-        Smell
+        Sight = 0,
+        Smell = 1,
+        Hearing = 2
     }
 }

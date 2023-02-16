@@ -1,35 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CodeBase.SensorSystem
 {
-    public class AreaSensor : MonoBehaviour, ISensor
+    public class AreaSensor : Sensor
     {
-        public SensorTargetType SensorTargetType => _sensorTargetType;
-        public Action OnSense { get; set; }
-        [SerializeField] SensorTargetType _sensorTargetType;
-        [SerializeField] private float _area;
+        [SerializeField] private AreaSensorData _areaSensorData;
 
-        private void Update()
+        private void Awake()
         {
-            CheckTarget();
+            SensorLogic = new AreaSensorLogic(_areaSensorData);
         }
 
-        public void CheckTarget()
-        {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, _area);
-            foreach (Collider hitCollider in hitColliders)
-            {
-                if (hitCollider.TryGetComponent(out ISensorTarget target))
-                {
-                    if (target.SensorTargetType == SensorTargetType)
-                    {
-                        OnSense?.Invoke();
-                        target.OnSensed?.Invoke(); 
-                        return;
-                    }
-                }
-            }
-        }
     }
 }

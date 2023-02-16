@@ -1,11 +1,12 @@
 using System;
+using UnityEngine;
 
 namespace CodeBase.SensorSystem
 {
-    public interface ISensor 
+    public interface ISensorLogic 
     {
-        SensorTargetType SensorTargetType { get; }
-        void CheckTarget();
+        float SensorPercentage { get; }
+        void Update();
         Action OnSense { get; set; }
     }
 }

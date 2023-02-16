@@ -4,7 +4,7 @@ namespace CodeBase.SensorSystem
 {
     public class AreaSensorUI : SensorUI
     {
-        [SerializeField] private AreaSensor _sensor;
-        protected override ISensor Sensor => _sensor;
+        [SerializeField] private AreaSensor _areaSensor;
+        protected override ISensorLogic SensorLogic => _areaSensor.SensorLogic;
     }
 }

@@ -1,24 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeBase.SensorSystem
 {
     public abstract class SensorUI : MonoBehaviour
     {
-        protected abstract ISensor Sensor { get; }
+        [SerializeField] private Slider _sensorSlider;
+        protected abstract ISensorLogic SensorLogic { get; }
+
+        private void Start()
+        {
+            OnSense();
+        }
 
         private void OnEnable()
         {
-            Sensor.OnSense += OnSense;
+            SensorLogic.OnSense += OnSense;
         }
 
         private void OnDisable()
         {
-            Sensor.OnSense -= OnSense;
+            SensorLogic.OnSense -= OnSense;
         }
 
         private void OnSense()
         {
-            Debug.Log("Sensed UI");
+            _sensorSlider.value = SensorLogic.SensorPercentage;
         }
     }
 }
