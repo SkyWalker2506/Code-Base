@@ -20,7 +20,7 @@ namespace SaveSystem
         }
 
         [ContextMenu("Load")]
-        private void LoadData()
+        public void LoadData()
         {
             SaveManager.LoadData();
         }

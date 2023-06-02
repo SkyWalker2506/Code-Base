@@ -29,7 +29,7 @@ namespace SaveSystem
                 _idValuePairs[_saveComponentIDPairs[saveComponent]] = saveComponent.GetSerializedValue();
             }
             string data = JsonConvert.SerializeObject(_idValuePairs,Formatting.Indented);
-            PlayerPrefs.SetString(_saveKey,data);
+            PlayerPrefs.SetString(_saveKey, data);
         }
         
         public static void LoadData()
@@ -38,7 +38,14 @@ namespace SaveSystem
             _idValuePairs = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
             foreach (KeyValuePair<ISaveComponent, int> saveComponentIDPair in _saveComponentIDPairs)
             {
-                saveComponentIDPair.Key.LoadData(_idValuePairs[saveComponentIDPair.Value]);
+                if(_saveComponentIDPairs.ContainsKey(saveComponentIDPair.Key))
+                {
+                    if(_idValuePairs.ContainsKey(saveComponentIDPair.Value))
+                    {
+                        saveComponentIDPair.Key.LoadData(_idValuePairs[saveComponentIDPair.Value]);
+                    }
+
+                }
             }
         }
     }
