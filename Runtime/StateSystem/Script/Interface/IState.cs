@@ -5,10 +5,14 @@ namespace StateSystem
     public interface IState
     {
         GameObject Owner { get; set; }
-        float UpdateInteval { get; }
-        IStateLogic StateLogic { get; }
+        IStateLogic[] StateEnterLogic { get; }
+        IStateLogic[] StateUpdateLogic { get; }
+        IStateLogic[] StateExitLogic { get; }
         ConditionStateCouple[] ConditionStateCouples{ get; }
-        IState GetAvailableState();
         void Initialize(GameObject gameObject);
+        IState GetAvailableState();
+        void OnStateEnter();
+        void OnStateUpdate();
+        void OnStateExit();
     }
 }

@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9465551b829d4c38a4c885eb62543ad4, type: 3}
+  m_Script: {fileID: 11500000, guid: a621328de2ca4914e80ede6f535a3756, type: 3}
   m_Name: ArcherInitialState
   m_EditorClassIdentifier: 
-  _scriptableStateLogic: {fileID: 11400000, guid: f3f3f68742f2140478b38cb907240e32, type: 2}
+  _scriptableStateLogic: {fileID: 0}
   _updateInteval: 1
-  _conditionStateCouples:
-  - StateConditions:
-    - {fileID: 11400000, guid: 36d74dd3a1affde46b057102a9592dca, type: 2}
-    States:
-    - {fileID: 11400000, guid: 2938c42ac1c938c4595d384a77aae2e5, type: 2}
+  isInfinitState: 0
+  _conditionStateCouples: []

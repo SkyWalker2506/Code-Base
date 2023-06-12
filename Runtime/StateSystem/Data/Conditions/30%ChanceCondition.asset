@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f41f572946404181255afee2cab867, type: 3}
+  m_Script: {fileID: 11500000, guid: 42a25904647a20249adaab26fd0b7db7, type: 3}
   m_Name: 30%ChanceCondition
   m_EditorClassIdentifier: 
+  checkInterval: 0.1
   _chance: 30

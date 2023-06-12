@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a621328de2ca4914e80ede6f535a3756, type: 3}
+  m_Name: EnemyCrossbowArcherChase
+  m_EditorClassIdentifier: 
+  _scriptableStateEnterLogic: []
+  _scriptableStateUpdateLogic: []
+  _scriptableStateExitLogic: []
+  isInfinitState: 0
+  _conditionStateCouples:
+  - StateConditions:
+    - {fileID: 11400000, guid: d9ea827d1f3b960458806148ff008b9c, type: 2}
+    States:
+    - {fileID: 11400000, guid: 67d9bdac99a412a45ac7bd44d9f703ea, type: 2}

@@ -2,8 +2,9 @@ namespace StateSystem
 {
     public interface IStateController
     {
-        IState State { get; set; }
+        IState CurrentState { get;}
         void SetCurrentState(IState state);
+        void CheckNextState();
         void UpdateState();
     }
 }

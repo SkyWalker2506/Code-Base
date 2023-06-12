@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57c16524d0447ec9f99ef93bf382f47, type: 3}
+  m_Name: CheckCloserThen5MetreAndReturnTrue50Chance
+  m_EditorClassIdentifier: 
+  checkInterval: 0.1
+  _conditionParts:
+  - _stateCondition: {fileID: 11400000, guid: 3a37a326daab89c4581f75c961424ffd, type: 2}
+    Not: 0
+    Operator: 0
+  - _stateCondition: {fileID: 11400000, guid: bb62821ed6471b54585896a373c9ae9d, type: 2}
+    Not: 0
+    Operator: 0

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a621328de2ca4914e80ede6f535a3756, type: 3}
+  m_Name: RunFromEnemy
+  m_EditorClassIdentifier: 
+  _scriptableStateEnterLogic: []
+  _scriptableStateUpdateLogic:
+  - {fileID: 11400000, guid: 47a787f1b89905143b83d5cb39f8e54a, type: 2}
+  _scriptableStateExitLogic: []
+  _conditionStateCouples:
+  - _stateConditions:
+    - {fileID: 11400000, guid: 13fd17aa1f4ff4a43b019dcfb72b7c7d, type: 2}
+    _states:
+    - {fileID: 11400000, guid: 67d9bdac99a412a45ac7bd44d9f703ea, type: 2}

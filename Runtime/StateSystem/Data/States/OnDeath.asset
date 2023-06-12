@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9465551b829d4c38a4c885eb62543ad4, type: 3}
+  m_Script: {fileID: 11500000, guid: a621328de2ca4914e80ede6f535a3756, type: 3}
   m_Name: OnDeath
   m_EditorClassIdentifier: 
-  _scriptableStateLogic: {fileID: 11400000, guid: bd882d4a2143f9044bbc306b40142cd9, type: 2}
-  _updateInteval: 0.1
+  _scriptableStateEnterLogic:
+  - {fileID: 11400000, guid: 1e48ca90549438440acffd1d237ba2ac, type: 2}
+  _scriptableStateUpdateLogic: []
+  _scriptableStateExitLogic: []
+  isInfinitState: 0
   _conditionStateCouples: []

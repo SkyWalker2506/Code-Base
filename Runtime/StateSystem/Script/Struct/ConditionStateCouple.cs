@@ -1,25 +1,47 @@
 using System;
+using UnityEngine;
+using Random = System.Random;
 
 namespace StateSystem
 {
     [Serializable]
-    public struct ConditionStateCouple
+    public class ConditionStateCouple
     {
-        public ScriptableStateCondition[] StateConditions;
-        public ScriptableState[] States;
+        [SerializeField] private ScriptableStateCondition[] _stateConditions;
+        [SerializeField] private ScriptableState[] _states;
+
+        private ScriptableStateCondition[] _stateConditionInstances;
 
         public void Initialize(IState state)
         {
-            foreach (ScriptableStateCondition stateCondition in StateConditions)
+            _stateConditionInstances = new ScriptableStateCondition[_stateConditions.Length];
+
+            for (int i = 0; i < _stateConditions.Length; i++)
+            {
+                _stateConditionInstances[i] = UnityEngine.Object.Instantiate(_stateConditions[i]);
+            }
+
+            foreach (ScriptableStateCondition stateCondition in _stateConditionInstances)
             {
                 stateCondition.Initialize(state);
             }
         }
-        
+
         public IState GetAvailableState()
         {
-            foreach (ScriptableStateCondition stateCondition in StateConditions)
+            if (_stateConditionInstances == null)
             {
+                return null;
+            }
+
+            foreach (ScriptableStateCondition stateCondition in _stateConditionInstances)
+            {
+                if (!stateCondition.ReadyForChecking)
+                {
+                    continue;
+                }
+
+                stateCondition.LastCheckedTime = Time.time;
                 if (stateCondition.IsConditionMet())
                 {
                     return GetRandomState();
@@ -31,7 +53,7 @@ namespace StateSystem
 
         private IState GetRandomState()
         {
-            return States.Length > 0?States[new Random().Next(0, States.Length)]:null;
+            return _states.Length > 0 ? _states[new Random().Next(0, _states.Length)] : null;
         }
     }
 }
