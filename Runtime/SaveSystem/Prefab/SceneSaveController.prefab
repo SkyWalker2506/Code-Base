@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4281774934694987337}
-  - component: {fileID: 6017909964113684504}
+  - component: {fileID: 2147336027051297527}
   m_Layer: 0
   m_Name: SceneSaveController
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6017909964113684504
+--- !u!114 &2147336027051297527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8945621335707087227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375329dc2d819214ab8743b57177d084, type: 3}
+  m_Script: {fileID: 11500000, guid: bcddd9c6cfa02b94e867eca5ce5d02f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _loadData: 1
-  _saveData: 0
-  _saveInterval: 1
+  _saveData: 1
+  _saveInterval: 0.1

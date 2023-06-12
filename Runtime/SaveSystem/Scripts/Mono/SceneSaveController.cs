@@ -13,10 +13,16 @@ namespace SaveSystem
         {
             if (_loadData)
             {
-                LoadData();
+                StartCoroutine(LoadDataCoroutine());
             }
 
             StartCoroutine(SaveData());
+        }
+
+        private IEnumerator LoadDataCoroutine()
+        {
+            yield return null;
+            LoadData();
         }
 
         [ContextMenu("Load")]

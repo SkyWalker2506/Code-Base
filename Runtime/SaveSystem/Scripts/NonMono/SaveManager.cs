@@ -7,19 +7,39 @@ namespace SaveSystem
     public static class SaveManager
     {
         private static string _saveKey = "SaveData";
-        private static Dictionary<ISaveComponent, int> _saveComponentIDPairs = new Dictionary<ISaveComponent, int> ();
-        private static Dictionary<int, string> _idValuePairs = new Dictionary<int, string>();
+        private static Dictionary<ISaveComponent, string> _saveComponentIDPairs = new Dictionary<ISaveComponent, string> ();
+        private static Dictionary<string, string> _idValuePairs = new Dictionary<string, string>();
 
         public static void RegisterSaveComponent(ISaveComponent saveComponent)
         {
-            _saveComponentIDPairs.Add(saveComponent, saveComponent.ID);
-            _idValuePairs.Add(saveComponent.ID, saveComponent.GetSerializedValue());
+            if (!_saveComponentIDPairs.ContainsKey(saveComponent))
+            {
+                _saveComponentIDPairs.Add(saveComponent, saveComponent.ID);
+            }
+            else
+            {
+                _saveComponentIDPairs[saveComponent] = saveComponent.ID;
+            }
+            if (!_idValuePairs.ContainsKey(saveComponent.ID))
+            {
+                _idValuePairs.Add(saveComponent.ID, saveComponent.GetSerializedValue());
+            }
+            else
+            {
+                _idValuePairs[saveComponent.ID] = saveComponent.GetSerializedValue();
+            }
         }
 
         public static void UnregisterSaveComponent(ISaveComponent saveComponent)
         {
-            _idValuePairs.Remove(_saveComponentIDPairs[saveComponent]);
-            _saveComponentIDPairs.Remove(saveComponent);
+            if (_saveComponentIDPairs.ContainsKey(saveComponent))
+            {
+                _saveComponentIDPairs.Remove(saveComponent);
+            }
+            if (_idValuePairs.ContainsKey(saveComponent.ID))
+            {
+                _idValuePairs.Remove(saveComponent.ID);
+            }
         }
 
         public static void SaveData()
@@ -35,8 +55,12 @@ namespace SaveSystem
         public static void LoadData()
         {
             string data = PlayerPrefs.GetString(_saveKey);
-            _idValuePairs = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
-            foreach (KeyValuePair<ISaveComponent, int> saveComponentIDPair in _saveComponentIDPairs)
+
+            if (string.IsNullOrEmpty(data))
+                return;
+
+            _idValuePairs = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
+            foreach (KeyValuePair<ISaveComponent, string> saveComponentIDPair in _saveComponentIDPairs)
             {
                 if(_saveComponentIDPairs.ContainsKey(saveComponentIDPair.Key))
                 {

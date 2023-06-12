@@ -1,20 +1,22 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SaveSystem
 {
     public abstract class SaveComponentBase : MonoBehaviour, ISaveComponent
     {
-        public int ID { get; private set; }
+        public string ID => _id;
 
-        private void Awake()
-        {
-            Initialize();
-        }
+        [SerializeField]private string _id;
 
-        protected virtual void Initialize()
+        public void GenerateID()
         {
-             ID = GetInstanceID();
+            if (string.IsNullOrWhiteSpace(_id))
+            {
+                _id = Guid.NewGuid().ToString();
+            }
         }
 
         private void OnEnable()
@@ -29,17 +31,18 @@ namespace SaveSystem
 
         public abstract string GetSerializedValue();
         public abstract void LoadData(string value);
-        
+
         [ContextMenu("SaveTest")]
         public void SaveTest()
         {
             SaveManager.SaveData();
         }
-        
+
         [ContextMenu("LoadTest")]
         public void LoadTest()
         {
             SaveManager.LoadData();
         }
+
     }
 }
