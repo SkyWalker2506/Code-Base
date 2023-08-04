@@ -3,42 +3,42 @@ using UnityEngine;
 
 namespace InteractionSystem
 {
-    public class Door : MonoBehaviour, IOpenableRotating
+    public class Door : MonoBehaviour, IInteractable
     {
-        public string InteractionText { get; set; }
+        [SerializeField] private DoorPanel doorPanel;
         public bool IsInteractable { get; private set; }
-        [field : SerializeField] public Quaternion OpenedRotation { get; private set; }
-        [field : SerializeField] public Quaternion ClosedRotation { get; private set;}
+        public string InteractionText { get; private set;}
         public Action OnInteractionStarted { get; set; }
         public Action OnInteractionEnded { get; set; }
+
+        private void OnEnable()
+        {
+            doorPanel.OnOpened += OnDoorOpened;
+            doorPanel.OnClosed += OnDoorClosed;
+        }
+
+        private void OnDisable()
+        {
+            doorPanel.OnOpened -= OnDoorOpened;
+            doorPanel.OnClosed -= OnDoorClosed;
+        }
+
         public void Interact()
         {
-            throw new NotImplementedException();
+            doorPanel.Switch();
+            IsInteractable = false;
         }
 
-        public void Open()
+        void OnDoorOpened()
         {
-            OnInteractionStarted?.Invoke();
-            
-        }
-
-        private void OnOpened()
-        {
-            OnInteractionEnded?.Invoke();
             InteractionText = "Close";
+            IsInteractable = true;
         }
         
-        public void Close()
+        void OnDoorClosed()
         {
-            OnInteractionStarted?.Invoke();
-            
-        }
-
-        private void OnClosed()
-        {
-            OnInteractionEnded?.Invoke();
             InteractionText = "Open";
+            IsInteractable = true;
         }
-
     }
 }

@@ -4,7 +4,7 @@ namespace InteractionSystem
 {
     public interface IOpenableRotating : IOpenable
     {
-        Quaternion OpenedRotation { get; }
-        Quaternion ClosedRotation { get; }        
+        Vector3 OpenRotation { get; }
+        Vector3 CloseRotation { get; }        
     }
 }

@@ -3,12 +3,12 @@ using CodeBase.Core;
 
 namespace InteractionSystem
 {
-    public interface IInteractable : IHaveTranform
+    public interface IInteractable : IHaveTransform
     {
         bool IsInteractable{ get; }
         string InteractionText { get; }
-        void Interact();
         Action OnInteractionStarted{ get; set; }
         Action OnInteractionEnded{ get; set; }
+        void Interact();
     }
 }

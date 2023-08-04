@@ -2,7 +2,7 @@
 
 namespace CodeBase.Core
 {
-    public interface IHaveTranform
+    public interface IHaveTransform
     {
         Transform transform { get; }
     }
