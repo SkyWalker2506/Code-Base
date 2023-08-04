@@ -10,14 +10,14 @@ namespace InteractionSystem
         [field : SerializeField] public Vector3 OpenRotation { get; private set; }
         [field : SerializeField] public Vector3 CloseRotation { get; private set;}
 
-        [field : SerializeField] public float OpenDuration { get; set; }
+        [field : SerializeField] public float OpeningDuration { get; set; }
         public bool IsOpened { get; set; }
         public Action OnOpened { get; set; }
         public Action OnClosed { get; set; }
 
         public virtual void Open()
         {
-            transform.DORotate(OpenRotation, OpenDuration).OnComplete(() =>
+            transform.DORotate(OpenRotation, OpeningDuration).OnComplete(() =>
             {
                 IsOpened = true;
                 OnOpened?.Invoke();
@@ -26,7 +26,7 @@ namespace InteractionSystem
         
         public virtual void Close()
         {
-            transform.DORotate(CloseRotation, OpenDuration).OnComplete(() =>
+            transform.DORotate(CloseRotation, OpeningDuration).OnComplete(() =>
             {
                 IsOpened = false;
                 OnClosed?.Invoke();

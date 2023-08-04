@@ -4,7 +4,7 @@ namespace InteractionSystem
 {
     public interface IOpenable 
     {
-        float OpenDuration{get; set;}
+        float OpeningDuration{get; set;}
         bool IsOpened{get; set;}
         Action OnOpened{get; set;}
         Action OnClosed{get; set;}

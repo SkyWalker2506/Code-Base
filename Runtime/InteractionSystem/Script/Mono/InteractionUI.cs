@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace InteractionSystem
 {
@@ -7,7 +8,9 @@ namespace InteractionSystem
     {
         [SerializeField] private GameObject UIParent;
         [SerializeField] private TMP_Text interactionTextObject;
+        [SerializeField] private Image interactionImageObject;
         [SerializeField] private string defaultInteractionText = "Interact";
+        [SerializeField] private Sprite defaultInteractionSprite;
         
         public static InteractionUI Instance;
         
@@ -19,14 +22,10 @@ namespace InteractionSystem
         public void ShowInteractionUI(IInteractable interactable)
         {
             UIParent.SetActive(true);
-            if (interactable.InteractionText == "")
-            {
-                interactionTextObject.SetText(interactable.InteractionText);
-            }
-            else
-            {
-                interactionTextObject.SetText(defaultInteractionText);
-            }
+            interactionTextObject.SetText(interactable.InteractionText == ""?defaultInteractionText:interactable.InteractionText);
+            interactionImageObject.sprite = interactable.InteractionSprite == null
+                ? defaultInteractionSprite
+                : interactable.InteractionSprite;
         }
 
         public void HideInteractionUI()

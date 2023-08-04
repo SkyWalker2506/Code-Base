@@ -8,6 +8,8 @@ namespace InteractionSystem
         [SerializeField] private DoorPanel doorPanel;
         public bool IsInteractable { get; private set; }
         public string InteractionText { get; private set;}
+        [field:SerializeField] 
+        public Sprite InteractionSprite { get; private set; }
         public Action OnInteractionStarted { get; set; }
         public Action OnInteractionEnded { get; set; }
 

@@ -1,5 +1,6 @@
 using System;
 using CodeBase.Core;
+using UnityEngine;
 
 namespace InteractionSystem
 {
@@ -7,6 +8,7 @@ namespace InteractionSystem
     {
         bool IsInteractable{ get; }
         string InteractionText { get; }
+        Sprite InteractionSprite { get; }
         Action OnInteractionStarted{ get; set; }
         Action OnInteractionEnded{ get; set; }
         void Interact();
