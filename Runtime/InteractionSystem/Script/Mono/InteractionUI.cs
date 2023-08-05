@@ -17,6 +17,7 @@ namespace InteractionSystem
         private void Awake()
         {
             Instance = this;
+            HideInteractionUI();
         }
 
         public void ShowInteractionUI(IInteractable interactable)

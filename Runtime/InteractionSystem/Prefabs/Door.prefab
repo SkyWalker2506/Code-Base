@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8723629536034893198}
   - component: {fileID: 6278523990501433492}
-  m_Layer: 0
+  - component: {fileID: 1106904353497453871}
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorPanel: {fileID: 564223682051656633}
+  <InteractionSprite>k__BackingField: {fileID: 21300000, guid: c27014685dc9aee42800f1851d0d6e6d, type: 3}
+--- !u!65 &1106904353497453871
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878984645520097141}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2771517831509493508
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +506,18 @@ PrefabInstance:
     - target: {fileID: 4227551198851968885, guid: 904b66a577c754264996d535827ce373, type: 3}
       propertyPath: m_Name
       value: DoorPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227551198851968885, guid: 904b66a577c754264996d535827ce373, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984260659836725901, guid: 904b66a577c754264996d535827ce373, type: 3}
+      propertyPath: <OpeningDuration>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048030138578366259, guid: 904b66a577c754264996d535827ce373, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

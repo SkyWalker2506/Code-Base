@@ -11,13 +11,18 @@ namespace InteractionSystem
         [field : SerializeField] public Vector3 CloseRotation { get; private set;}
 
         [field : SerializeField] public float OpeningDuration { get; set; }
-        public bool IsOpened { get; set; }
+        public bool IsOpened { get; protected set; }
         public Action OnOpened { get; set; }
         public Action OnClosed { get; set; }
 
+        private void Start()
+        {
+            transform.localRotation = IsOpened? Quaternion.Euler(OpenRotation):Quaternion.Euler(CloseRotation);
+        }
+
         public virtual void Open()
         {
-            transform.DORotate(OpenRotation, OpeningDuration).OnComplete(() =>
+            transform.DOLocalRotate(OpenRotation, OpeningDuration).OnComplete(() =>
             {
                 IsOpened = true;
                 OnOpened?.Invoke();
@@ -26,7 +31,7 @@ namespace InteractionSystem
         
         public virtual void Close()
         {
-            transform.DORotate(CloseRotation, OpeningDuration).OnComplete(() =>
+            transform.DOLocalRotate(CloseRotation, OpeningDuration).OnComplete(() =>
             {
                 IsOpened = false;
                 OnClosed?.Invoke();
