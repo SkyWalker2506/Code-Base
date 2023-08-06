@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using DG.Tweening;
 using UnityEngine;
 
@@ -38,7 +37,7 @@ namespace InteractionSystem
             });
         }
 
-        public virtual void Switch()
+        public void Switch()
         {
             if (IsOpened)
             {

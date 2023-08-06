@@ -7,6 +7,6 @@ namespace InteractionSystem
     {
         IInteractor Interactor { get; }
         void Update();
-        void Interact();
+        void Interact(int index);
     }
 }

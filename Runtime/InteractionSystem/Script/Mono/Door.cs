@@ -6,61 +6,119 @@ namespace InteractionSystem
     public class Door : MonoBehaviour, IInteractable
     {
         [SerializeField] private DoorPanel doorPanel;
+        [SerializeField] private LockBase doorLock;
+        private Interaction openInteraction;
+        private Interaction closeInteraction;
+        private Interaction unlockInteraction;
+        private Interaction lockInteraction;
         public bool IsInteractable { get; private set; }
-        [SerializeField] private InteractionUIData interactionUIData; 
-        public string InteractionText { get; set; }
-
-        public IInteraction[] Interactions { get; private set; }
+    
+        public Interaction[] Interactions { get; private set; }
 
         [SerializeField] private bool initialDoorOpen; 
-
-        public Action OnInteractionStarted { get; set; }
-        public Action OnInteractionEnded { get; set; }
+        [SerializeField] private bool isLockable; 
+        [SerializeField] private bool initialLocked; 
 
         private void Awake()
         {
-            doorPanel.Initialize(initialDoorOpen);
-            Interactions = new IInteraction[]
-            {
-                new RotateInteraction
-                { 
-                    InteractionUIData =interactionUIData,
-                 OnInteractionStarted = OnInteractionStarted,
-                 OnInteractionEnded = OnInteractionEnded
-                }
-            };
+            Initialize();
         }
 
         private void OnEnable()
         {
             doorPanel.OnOpened += OnDoorOpened;
             doorPanel.OnClosed += OnDoorClosed;
+            if (isLockable)
+            {
+                doorLock.OnLocked += OnDoorLocked;
+                doorLock.OnUnlocked += OnDoorUnLocked;
+            }
             IsInteractable = true;
-            InteractionText = doorPanel.IsOpened?"Close":"Open";
         }
 
         private void OnDisable()
         {
             doorPanel.OnOpened -= OnDoorOpened;
             doorPanel.OnClosed -= OnDoorClosed;
+            if (isLockable)
+            {
+                doorLock.OnLocked -= OnDoorLocked;
+                doorLock.OnUnlocked -= OnDoorUnLocked;
+            }
+            IsInteractable = false;
+        }
+
+        void Initialize()
+        {
+            openInteraction = new Interaction
+            {
+                InteractionText = "Open",
+                Interact = doorPanel.Open
+            };
+            closeInteraction = new Interaction
+            {
+                InteractionText = "Close",
+                Interact = doorPanel.Close
+            };
+            unlockInteraction = new Interaction
+            {
+                InteractionText = "Unlock",
+                Interact = doorLock.Unlock
+            };
+            lockInteraction = new Interaction
+            {
+                InteractionText = "lock",
+                Interact = doorLock.Lock
+            };
+            
+            doorPanel.Initialize(initialDoorOpen);
+            if (initialDoorOpen)
+            {
+                OnDoorOpened();
+            }
+            else
+            {
+                OnDoorClosed();
+                if (isLockable && initialLocked)
+                {
+                    OnDoorLocked();
+                }
+                else
+                {
+                    OnDoorUnLocked();
+                }
+            }
         }
 
         public void Interact(int index)
-        {                                                                                                                  
-            doorPanel.Switch();
+        {
             IsInteractable = false;
+            Interactions[index].Interact();
         }
 
         void OnDoorOpened()
         {
-            InteractionText = "Close";
+            Interactions = new[] { closeInteraction };
             IsInteractable = true;
         }
         
         void OnDoorClosed()
         {
-            InteractionText = "Open";
+            Interactions = new[] { openInteraction , lockInteraction};
             IsInteractable = true;
         }
+
+        void OnDoorLocked()
+        {
+            Interactions = new[] { unlockInteraction};
+            IsInteractable = true;
+        }
+        
+        void OnDoorUnLocked()
+        {
+            Interactions = new[] { openInteraction, lockInteraction};
+            IsInteractable = true;
+        }
+        
     }
 }

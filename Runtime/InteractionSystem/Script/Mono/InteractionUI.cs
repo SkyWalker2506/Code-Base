@@ -1,17 +1,12 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace InteractionSystem
 {
     public class InteractionUI : MonoBehaviour
     {
         [SerializeField] private GameObject UIParent;
-        [SerializeField] private TMP_Text interactionTextObject;
-        [SerializeField] private Image interactionImageObject;
         [SerializeField] private string defaultInteractionText = "Interact";
-        [SerializeField] private Sprite defaultInteractionSprite;
-        
+        [SerializeField] private InteractionPanel[] interactionPanels;
         public static InteractionUI Instance;
         
         private void Awake()
@@ -23,16 +18,27 @@ namespace InteractionSystem
         public void ShowInteractionUI(IInteractable interactable)
         {
             UIParent.SetActive(true);
-            interactionTextObject.SetText(interactable.Interactions[0].InteractionUIData.InteractionText == ""?
-                defaultInteractionText:interactable.Interactions[0].InteractionUIData.InteractionText);
-            interactionImageObject.sprite = interactable.Interactions[0].InteractionUIData.InteractionSprite == null
-                ? defaultInteractionSprite
-                : interactable.Interactions[0].InteractionUIData.InteractionSprite;
+            DisableInteractionPanels();
+            for (int i = 0; i < interactable.Interactions.Length; i++)
+            {
+                interactionPanels[i].SetText(interactable.Interactions[i].InteractionText == ""?
+                defaultInteractionText:interactable.Interactions[i].InteractionText);
+                interactionPanels[i].gameObject.SetActive(true);
+            }
         }
 
         public void HideInteractionUI()
         {
             UIParent.SetActive(false);
         }
+
+        void DisableInteractionPanels()
+        {
+            foreach (InteractionPanel panel in interactionPanels)
+            {
+                panel.gameObject.SetActive(false);
+            }
+        }
+
     }
 }

@@ -31,7 +31,6 @@ namespace InteractionSystem
                     if (interactable.IsInteractable)
                     {
                         float dot =Vector3.Dot(center.forward,(interactable.transform.position-center.position).normalized);
-                        Debug.Log(dot);
                         if (dot > 1 - maxAngle / 180)
                         {
                             availableInteractables.Add(interactable);

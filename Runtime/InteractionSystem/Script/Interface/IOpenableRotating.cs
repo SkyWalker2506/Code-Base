@@ -7,4 +7,6 @@ namespace InteractionSystem
         Vector3 OpenRotation { get; }
         Vector3 CloseRotation { get; }        
     }
+    
+
 }

@@ -3,24 +3,10 @@ using System.Numerics;
 
 namespace InteractionSystem
 {
-    public interface IInteraction
+    public struct Interaction
     {
-        InteractionUIData InteractionUIData{ get; set; }
-        Action OnInteractionStarted{ get; set; }
-        Action OnInteractionEnded{ get; set; }
-        void Interact();
+        public string InteractionText{ get; set; }
+        public Action Interact{ get; set; }
     }
-
-    public class RotateInteraction : IInteraction
-    {
-        private Vector3 TargetRotation;
-        public InteractionUIData InteractionUIData { get; set; }
-        public Action OnInteractionStarted { get; set; }
-        public Action OnInteractionEnded { get; set; }
-        
-        public void Interact()
-        {
-            
-        }
-    }
+    
 }

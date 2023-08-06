@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8723629536034893198}
   - component: {fileID: 6278523990501433492}
   - component: {fileID: 1106904353497453871}
+  - component: {fileID: 299118329038786775}
   m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
@@ -47,7 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorPanel: {fileID: 564223682051656633}
-  <InteractionSprite>k__BackingField: {fileID: 21300000, guid: c27014685dc9aee42800f1851d0d6e6d, type: 3}
+  doorLock: {fileID: 299118329038786775}
+  initialDoorOpen: 0
+  isLockable: 1
+  initialLocked: 0
 --- !u!65 &1106904353497453871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,6 +73,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &299118329038786775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878984645520097141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75335dac5f154355aed7adeec1d1057a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2771517831509493508
 GameObject:
   m_ObjectHideFlags: 0
