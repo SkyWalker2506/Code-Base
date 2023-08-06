@@ -1,4 +1,4 @@
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     public interface IStateCondition
     {

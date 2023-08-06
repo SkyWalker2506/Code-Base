@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     [CreateAssetMenu(menuName = "StateSystem/State", fileName = "State", order = 0)]
     public class ScriptableState : ScriptableObject, IState

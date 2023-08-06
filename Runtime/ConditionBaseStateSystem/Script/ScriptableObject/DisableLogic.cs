@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     [CreateAssetMenu(menuName = "StateSystem/StateLogic/Create DisableLogic", fileName = "DisableLogic", order = 0)]
     public class DisableLogic : ScriptableStateLogic

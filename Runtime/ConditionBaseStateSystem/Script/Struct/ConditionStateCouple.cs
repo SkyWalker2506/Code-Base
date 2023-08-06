@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = System.Random;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     [Serializable]
     public class ConditionStateCouple

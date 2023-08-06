@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     [CreateAssetMenu(menuName = "StateSystem/Create Condition Combiner", fileName = "ConditionCombiner", order = 0)]
 

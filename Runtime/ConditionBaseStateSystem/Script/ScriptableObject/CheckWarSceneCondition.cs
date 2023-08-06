@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StateSystem;
+using ConditionBaseStateSystem;
 using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(menuName = "StateSystem/StateCondition/Create CheckWarScene", fileName = "CheckWarScene", order = 0)]

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = System.Random;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     [CreateAssetMenu(menuName = "StateSystem/StateCondition/Create ChanceCondition", fileName = "ChanceCondition", order = 0)]
     public class ChanceCondition : ScriptableStateCondition

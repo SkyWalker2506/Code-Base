@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     [CreateAssetMenu(menuName = "StateSystem/StateLogic/Create DebugLogic", fileName = "DebugLogic", order = 0)]
     public class DebugLogic : ScriptableStateLogic

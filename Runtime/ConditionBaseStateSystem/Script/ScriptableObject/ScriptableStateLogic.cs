@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     public abstract class ScriptableStateLogic : ScriptableObject, IStateLogic
     {

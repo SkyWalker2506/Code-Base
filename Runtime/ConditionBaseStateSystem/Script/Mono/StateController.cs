@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StateSystem
+namespace ConditionBaseStateSystem
 {
     public class StateController : MonoBehaviour, IStateController
     {
