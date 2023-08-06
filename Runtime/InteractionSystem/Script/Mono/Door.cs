@@ -7,9 +7,11 @@ namespace InteractionSystem
     {
         [SerializeField] private DoorPanel doorPanel;
         public bool IsInteractable { get; private set; }
-        public Interaction[] Interactions { get; private set; }
-        public string InteractionText { get; private set;}
-        [field:SerializeField] public Sprite InteractionSprite { get; private set; }
+        [SerializeField] private InteractionUIData interactionUIData; 
+        public string InteractionText { get; set; }
+
+        public IInteraction[] Interactions { get; private set; }
+
         [SerializeField] private bool initialDoorOpen; 
 
         public Action OnInteractionStarted { get; set; }
@@ -18,12 +20,11 @@ namespace InteractionSystem
         private void Awake()
         {
             doorPanel.Initialize(initialDoorOpen);
-            Interactions = new Interaction[]
+            Interactions = new IInteraction[]
             {
-                new Interaction
-                {
-                 InteractionText = InteractionText,
-                 InteractionSprite = InteractionSprite,
+                new RotateInteraction
+                { 
+                    InteractionUIData =interactionUIData,
                  OnInteractionStarted = OnInteractionStarted,
                  OnInteractionEnded = OnInteractionEnded
                 }
@@ -44,8 +45,8 @@ namespace InteractionSystem
             doorPanel.OnClosed -= OnDoorClosed;
         }
 
-        public void Interact()
-        {
+        public void Interact(int index)
+        {                                                                                                                  
             doorPanel.Switch();
             IsInteractable = false;
         }

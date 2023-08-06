@@ -1,25 +1,15 @@
-using System;
 using CodeBase.Core;
 using FiniteState;
-using UnityEngine;
 
 namespace InteractionSystem
 {
     public interface IInteractable : IHaveTransform
     {
         bool IsInteractable{ get; }
-        Interaction[] Interactions{ get; }
-        void Interact();
+        IInteraction[] Interactions{ get; }
+        void Interact(int index);
     }
 
-    public struct Interaction
-    {
-        public string InteractionText { get; set;}
-        public Sprite InteractionSprite { get; set;}
-        public Action OnInteractionStarted{ get; set; }
-        public Action OnInteractionEnded{ get; set; } 
-    }
-    
     public class DoorStateController : IStateController
     {
         public IState CurrentState { get; }

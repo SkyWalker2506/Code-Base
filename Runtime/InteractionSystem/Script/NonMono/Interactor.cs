@@ -6,11 +6,11 @@ namespace InteractionSystem
     {
         public InteractionUI InteractionUI => InteractionUI.Instance;
 
-        public void Interact(IInteractable interactable)
+        public void Interact(IInteractable interactable, int index)
         {
             if (interactable.IsInteractable)
             {
-                interactable.Interact();
+                interactable.Interact(index);
             }
             else
             {
