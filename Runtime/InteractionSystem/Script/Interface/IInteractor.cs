@@ -6,4 +6,5 @@
         public void Interact(IInteractable interactable);
         public IInteractable GetInteractable();
     }
+
 }

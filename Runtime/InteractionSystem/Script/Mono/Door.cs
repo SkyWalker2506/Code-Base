@@ -7,6 +7,7 @@ namespace InteractionSystem
     {
         [SerializeField] private DoorPanel doorPanel;
         public bool IsInteractable { get; private set; }
+        public Interaction[] Interactions { get; private set; }
         public string InteractionText { get; private set;}
         [field:SerializeField] public Sprite InteractionSprite { get; private set; }
         [SerializeField] private bool initialDoorOpen; 
@@ -17,6 +18,16 @@ namespace InteractionSystem
         private void Awake()
         {
             doorPanel.Initialize(initialDoorOpen);
+            Interactions = new Interaction[]
+            {
+                new Interaction
+                {
+                 InteractionText = InteractionText,
+                 InteractionSprite = InteractionSprite,
+                 OnInteractionStarted = OnInteractionStarted,
+                 OnInteractionEnded = OnInteractionEnded
+                }
+            };
         }
 
         private void OnEnable()

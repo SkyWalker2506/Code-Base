@@ -23,10 +23,11 @@ namespace InteractionSystem
         public void ShowInteractionUI(IInteractable interactable)
         {
             UIParent.SetActive(true);
-            interactionTextObject.SetText(interactable.InteractionText == ""?defaultInteractionText:interactable.InteractionText);
-            interactionImageObject.sprite = interactable.InteractionSprite == null
+            interactionTextObject.SetText(interactable.Interactions[0].InteractionText == ""?
+                defaultInteractionText:interactable.Interactions[0].InteractionText);
+            interactionImageObject.sprite = interactable.Interactions[0].InteractionSprite == null
                 ? defaultInteractionSprite
-                : interactable.InteractionSprite;
+                : interactable.Interactions[0].InteractionSprite;
         }
 
         public void HideInteractionUI()
