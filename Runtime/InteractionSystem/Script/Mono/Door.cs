@@ -1,34 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace InteractionSystem
 {
-    public class Drawer : MonoBehaviour, IInteractable
-    {
-        [SerializeField] private LockBase drawerLock;
-        
-        public bool IsInteractable { get; }
-        public Interaction[] Interactions { get; }
-        public void Interact(int index)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class Door : MonoBehaviour, IInteractable
     {
         [SerializeField] private DoorPanel doorPanel;
         [SerializeField] private LockBase doorLock;
-        private Interaction openInteraction;
-        private Interaction closeInteraction;
-        private Interaction unlockInteraction;
-        public bool IsInteractable { get; private set; }
-    
-        public Interaction[] Interactions { get; private set; }
 
         [SerializeField] private bool isLockable; 
         [SerializeField] private bool initialLocked; 
         [SerializeField] private bool initialDoorOpen; 
+
+        private Interaction openInteraction;
+        private Interaction closeInteraction;
+        private Interaction unlockInteraction;
+        public bool IsInteractable { get; private set; }
+        public Interaction[] Interactions { get; private set; }
 
         private void Awake()
         {
@@ -125,6 +112,5 @@ namespace InteractionSystem
             Interactions = new[] { openInteraction};
             IsInteractable = true;
         }
-        
     }
 }

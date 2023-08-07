@@ -8,6 +8,7 @@ namespace InteractionSystem
         bool IsOpened{get;}
         Action OnOpened{get; set;}
         Action OnClosed{get; set;}
+        void Initialize(bool isOpened);
         void Open();
         void Close();
     }
