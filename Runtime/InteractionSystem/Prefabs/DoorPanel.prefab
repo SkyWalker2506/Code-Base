@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e6db5661b74c438b36f6ed67b497d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <OpenRotation>k__BackingField: {x: 0, y: 80, z: 0}
-  <CloseRotation>k__BackingField: {x: 0, y: 0, z: 0}
-  <OpeningDuration>k__BackingField: 0
+  <OpenedRotation>k__BackingField: {x: 0, y: 80, z: 0}
+  <ClosedRotation>k__BackingField: {x: 0, y: 0, z: 0}
+  <OpeningDuration>k__BackingField: 1
 --- !u!1 &8048030138578366259
 GameObject:
   m_ObjectHideFlags: 0

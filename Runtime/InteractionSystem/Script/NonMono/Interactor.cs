@@ -10,7 +10,10 @@ namespace InteractionSystem
         {
             if (interactable.IsInteractable)
             {
-                interactable.Interact(index);
+                if (interactable.Interactions.Length > index)
+                {
+                    interactable.Interact(index);
+                }
             }
             else
             {

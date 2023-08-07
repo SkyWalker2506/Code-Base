@@ -3,6 +3,18 @@ using UnityEngine;
 
 namespace InteractionSystem
 {
+    public class Drawer : MonoBehaviour, IInteractable
+    {
+        [SerializeField] private LockBase drawerLock;
+        
+        public bool IsInteractable { get; }
+        public Interaction[] Interactions { get; }
+        public void Interact(int index)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class Door : MonoBehaviour, IInteractable
     {
         [SerializeField] private DoorPanel doorPanel;
@@ -10,14 +22,13 @@ namespace InteractionSystem
         private Interaction openInteraction;
         private Interaction closeInteraction;
         private Interaction unlockInteraction;
-        private Interaction lockInteraction;
         public bool IsInteractable { get; private set; }
     
         public Interaction[] Interactions { get; private set; }
 
-        [SerializeField] private bool initialDoorOpen; 
         [SerializeField] private bool isLockable; 
         [SerializeField] private bool initialLocked; 
+        [SerializeField] private bool initialDoorOpen; 
 
         private void Awake()
         {
@@ -65,11 +76,6 @@ namespace InteractionSystem
                 InteractionText = "Unlock",
                 Interact = doorLock.Unlock
             };
-            lockInteraction = new Interaction
-            {
-                InteractionText = "lock",
-                Interact = doorLock.Lock
-            };
             
             doorPanel.Initialize(initialDoorOpen);
             if (initialDoorOpen)
@@ -104,7 +110,7 @@ namespace InteractionSystem
         
         void OnDoorClosed()
         {
-            Interactions = new[] { openInteraction , lockInteraction};
+            Interactions = new[] { openInteraction };
             IsInteractable = true;
         }
 
@@ -116,7 +122,7 @@ namespace InteractionSystem
         
         void OnDoorUnLocked()
         {
-            Interactions = new[] { openInteraction, lockInteraction};
+            Interactions = new[] { openInteraction};
             IsInteractable = true;
         }
         

@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorPanel: {fileID: 564223682051656633}
   doorLock: {fileID: 299118329038786775}
-  initialDoorOpen: 0
   isLockable: 1
   initialLocked: 0
+  initialDoorOpen: 0
 --- !u!65 &1106904353497453871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -522,18 +522,6 @@ PrefabInstance:
     - target: {fileID: 4227551198851968885, guid: 904b66a577c754264996d535827ce373, type: 3}
       propertyPath: m_Name
       value: DoorPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4227551198851968885, guid: 904b66a577c754264996d535827ce373, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984260659836725901, guid: 904b66a577c754264996d535827ce373, type: 3}
-      propertyPath: <OpeningDuration>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8048030138578366259, guid: 904b66a577c754264996d535827ce373, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

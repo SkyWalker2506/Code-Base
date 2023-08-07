@@ -4,10 +4,45 @@ using UnityEngine;
 
 namespace InteractionSystem
 {
+    public abstract class OpenableMovingBase : MonoBehaviour, IOpenableMoving
+    {
+        [field : SerializeField] public Vector3 OpenedPosition { get; private set;}
+        [field : SerializeField] public Vector3 ClosedPosition { get; private set;}
+
+        [field : SerializeField] public float OpeningDuration { get; set; }
+        public bool IsOpened { get; private set; }
+        public Action OnOpened { get; set; }
+        public Action OnClosed { get; set; }
+        
+        private void Start()
+        {
+            transform.localPosition = IsOpened? OpenedPosition:ClosedPosition;
+        }
+
+        
+        public virtual void Open()
+        {
+            transform.DOLocalMove(OpenedPosition, OpeningDuration).OnComplete(() =>
+            {
+                IsOpened = true;
+                OnOpened?.Invoke();
+            });
+        }
+
+        public virtual void Close()
+        {
+            transform.DOLocalMove(ClosedPosition, OpeningDuration).OnComplete(() =>
+            {
+                IsOpened = false;
+                OnClosed?.Invoke();
+            });
+        }
+
+    }
     public abstract class OpenableRotatingBase : MonoBehaviour, IOpenableRotating
     {
-        [field : SerializeField] public Vector3 OpenRotation { get; private set; }
-        [field : SerializeField] public Vector3 CloseRotation { get; private set;}
+        [field : SerializeField] public Vector3 OpenedRotation { get; private set; }
+        [field : SerializeField] public Vector3 ClosedRotation { get; private set;}
 
         [field : SerializeField] public float OpeningDuration { get; set; }
         public bool IsOpened { get; protected set; }
@@ -16,12 +51,12 @@ namespace InteractionSystem
 
         private void Start()
         {
-            transform.localRotation = IsOpened? Quaternion.Euler(OpenRotation):Quaternion.Euler(CloseRotation);
+            transform.localRotation = IsOpened? Quaternion.Euler(OpenedRotation):Quaternion.Euler(ClosedRotation);
         }
 
         public virtual void Open()
         {
-            transform.DOLocalRotate(OpenRotation, OpeningDuration).OnComplete(() =>
+            transform.DOLocalRotate(OpenedRotation, OpeningDuration).OnComplete(() =>
             {
                 IsOpened = true;
                 OnOpened?.Invoke();
@@ -30,7 +65,7 @@ namespace InteractionSystem
         
         public virtual void Close()
         {
-            transform.DOLocalRotate(CloseRotation, OpeningDuration).OnComplete(() =>
+            transform.DOLocalRotate(ClosedRotation, OpeningDuration).OnComplete(() =>
             {
                 IsOpened = false;
                 OnClosed?.Invoke();
