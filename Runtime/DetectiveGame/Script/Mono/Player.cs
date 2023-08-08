@@ -3,12 +3,11 @@ using InteractionSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 namespace DetectiveGame.Player
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private PlayerInputAsset playerInput;
+        private PlayerInputAsset playerInput;
         [SerializeField] private InteractorData interactorData;
 
         private IInteractorLogic interactorLogic;

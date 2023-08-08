@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DetectiveGame.Interactable.Parts;
 using InteractionSystem;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine.Serialization;
 
 namespace DetectiveGame.Interactable
 {
-    public class Drawer : MonoBehaviour, IInteractable
+    public class Drawer : Interactable
     {
         [SerializeField] private LockBase drawerLock;
         [SerializeField] private DrawerPanel[] drawerPanels;
+        DrawerPanel currentPanel => drawerPanels[openedDrawerIndex];
+
         [SerializeField] private bool initialLocked; 
         [FormerlySerializedAs("openDrawerIndex")]
         [Tooltip("-1 means all drawers are closed")]
@@ -21,21 +24,20 @@ namespace DetectiveGame.Interactable
         private Interaction openNextInteraction;
         private Interaction closeInteraction;
         private Interaction unlockInteraction;
+        private Interaction inspectInteraction;
+        private Interaction focusNextInteraction;
+        private Interaction closeInspectInteraction;
+        private Interaction focusInteraction;
+        private Interaction unfocusInteraction;
         
-        public bool IsInteractable { get; private set; }
-        public Interaction[] Interactions { get; private set; }
-
-        private void Awake()
-        {
-            Initialize();
-        }
-
         private void OnEnable()
         {
             foreach (var drawerPanel in drawerPanels)
             {
                 drawerPanel.OnOpened += OnDrawerOpened;
                 drawerPanel.OnClosed += OnDrawerClosed;
+                drawerPanel.OnInspect += OnInspected;
+                drawerPanel.OnInspectEnded += OnInspectEnded;
             }
             
             if (initialLocked)
@@ -51,6 +53,8 @@ namespace DetectiveGame.Interactable
             {
                 drawerPanel.OnOpened -= OnDrawerOpened;
                 drawerPanel.OnClosed -= OnDrawerClosed;
+                drawerPanel.OnInspect -= OnInspected;
+                drawerPanel.OnInspectEnded -= OnInspectEnded;
             }
             
             if (initialLocked)
@@ -59,9 +63,8 @@ namespace DetectiveGame.Interactable
             }
             IsInteractable = false;
         }
-
         
-        void Initialize()
+        protected override void Initialize()
         {
             if (drawerPanels.Length == 0)
             {
@@ -87,6 +90,46 @@ namespace DetectiveGame.Interactable
                 InteractionText = "Unlock",
                 Interact = drawerLock.Unlock
             };
+            inspectInteraction = new Interaction
+            {
+                InteractionText = "Inspect",
+                Interact = InspectDrawer
+            };
+            focusInteraction = new Interaction
+            {
+                InteractionText = "Focus",
+                Interact = Focus
+            };
+            focusNextInteraction = new Interaction
+            {
+                InteractionText = "Focus to Next",
+                Interact = FocusToNext
+            };
+            
+            unfocusInteraction = new Interaction
+            {
+                InteractionText = "Stop Focusing",
+                Interact = StopFocusing
+            };
+            
+            closeInspectInteraction = new Interaction
+            {
+                InteractionText = "Stop Inspecting",
+                Interact = StopInspecting
+            };
+            
+            focusInteraction = new Interaction
+            {
+                InteractionText = "Focus",
+                Interact = Focus
+            };
+            
+            unfocusInteraction = new Interaction
+            {
+                InteractionText = "Stop Focusing",
+                Interact = StopFocusing
+            };
+
             
             openedDrawerIndex = Math.Clamp(openInitialDrawerIndex, -1, drawerPanels.Length);
             for (int i = 0; i < drawerPanels.Length; i++)
@@ -107,23 +150,47 @@ namespace DetectiveGame.Interactable
                 }
             }
         }
-        
-        public void Interact(int index)
-        {
-            IsInteractable = false;
-            Interactions[index].Interact();
-        }
+
+
 
         void OpenDrawer(int index)
         {
             index %= drawerPanels.Length; 
             if (isDrawerOpened)
             {
-                drawerPanels[openedDrawerIndex].Close();
+                currentPanel.Close();
             }
-            drawerPanels[index].Open();
             openedDrawerIndex = index;
+            currentPanel.Open();
         }
+        
+        void InspectDrawer()
+        {
+            currentPanel.Inspect();
+        }
+
+        void StopInspecting()
+        {
+            currentPanel.StopInspect();
+        }
+
+        private void Focus()
+        {
+            currentPanel.Focus();
+            OnFocused();
+        }
+
+        private void FocusToNext()
+        {
+            currentPanel.FocusNext();
+            OnFocused();
+        }
+        private void StopFocusing()
+        {
+            currentPanel.StopFocus();
+            OnFocusEnded();
+        }
+
         
         private void CloseDrawer()
         {
@@ -133,26 +200,58 @@ namespace DetectiveGame.Interactable
 
         void OnDrawerOpened()
         {
-            Interactions = new[] {openNextInteraction, closeInteraction };
+            Interactions = new List<Interaction> {openNextInteraction, focusInteraction, closeInteraction };
             IsInteractable = true;
         }
         
         void OnDrawerClosed()
         {
-            Interactions = new[] { openInteraction };
+            Interactions = new List<Interaction> { openInteraction };
             IsInteractable = true;
         }
 
         void OnDrawerLocked()
         {
-            Interactions = new[] { unlockInteraction};
+            Interactions = new List<Interaction> { unlockInteraction};
             IsInteractable = true;
         }
         
         void OnDrawerUnLocked()
         {
-            Interactions = new[] { openInteraction};
+            Interactions = new List<Interaction> { openInteraction};
             IsInteractable = true;
+        }
+        private void OnFocused()
+        {
+            if (currentPanel.FocusedInspectable != null)
+            {
+                Interactions = new List<Interaction> { inspectInteraction, focusNextInteraction, unfocusInteraction };
+            }
+            else
+            {
+                Interactions = new List<Interaction> { unfocusInteraction };
+            }
+            IsInteractable = true;
+        }
+
+        private void OnFocusEnded()
+        {
+            OnDrawerOpened();
+        }
+        
+        void OnInspected()
+        {
+            Interactions = new List<Interaction> {closeInspectInteraction};
+            foreach (Interaction interaction in currentPanel.FocusedInspectable.Interactions)
+            {
+                Interactions.Add(interaction);
+            }
+            IsInteractable = true;
+        }
+        
+        void OnInspectEnded()
+        {
+            OnFocused();
         }
     }
 }

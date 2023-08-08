@@ -19,7 +19,7 @@ namespace InteractionSystem
         {
             UIParent.SetActive(true);
             DisableInteractionPanels();
-            for (int i = 0; i < interactable.Interactions.Length; i++)
+            for (int i = 0; i < interactable.Interactions.Count; i++)
             {
                 interactionPanels[i].SetText(interactable.Interactions[i].InteractionText == ""?
                 defaultInteractionText:interactable.Interactions[i].InteractionText);

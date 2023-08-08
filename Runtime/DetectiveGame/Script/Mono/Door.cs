@@ -1,10 +1,11 @@
-﻿using DetectiveGame.Interactable.Parts;
+﻿using System.Collections.Generic;
+using DetectiveGame.Interactable.Parts;
 using InteractionSystem;
 using UnityEngine;
 
 namespace DetectiveGame.Interactable
 {
-    public class Door : MonoBehaviour, IInteractable
+    public class Door : Interactable
     {
         [SerializeField] private DoorPanel doorPanel;
         [SerializeField] private LockBase doorLock;
@@ -16,13 +17,6 @@ namespace DetectiveGame.Interactable
         private Interaction openInteraction;
         private Interaction closeInteraction;
         private Interaction unlockInteraction;
-        public bool IsInteractable { get; private set; }
-        public Interaction[] Interactions { get; private set; }
-
-        private void Awake()
-        {
-            Initialize();
-        }
 
         private void OnEnable()
         {
@@ -48,7 +42,7 @@ namespace DetectiveGame.Interactable
             IsInteractable = false;
         }
 
-        void Initialize()
+        protected override void Initialize()
         {
             openInteraction = new Interaction
             {
@@ -85,33 +79,27 @@ namespace DetectiveGame.Interactable
             }
         }
 
-        public void Interact(int index)
-        {
-            IsInteractable = false;
-            Interactions[index].Interact();
-        }
-
         void OnDoorOpened()
         {
-            Interactions = new[] { closeInteraction };
+            Interactions = new List<Interaction> { closeInteraction };
             IsInteractable = true;
         }
         
         void OnDoorClosed()
         {
-            Interactions = new[] { openInteraction };
+            Interactions = new List<Interaction> { openInteraction };
             IsInteractable = true;
         }
 
         void OnDoorLocked()
         {
-            Interactions = new[] { unlockInteraction};
+            Interactions = new List<Interaction> { unlockInteraction};
             IsInteractable = true;
         }
         
         void OnDoorUnLocked()
         {
-            Interactions = new[] { openInteraction};
+            Interactions = new List<Interaction> { openInteraction};
             IsInteractable = true;
         }
     }

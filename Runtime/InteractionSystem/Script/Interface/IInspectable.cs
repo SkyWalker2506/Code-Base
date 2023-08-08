@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace InteractionSystem
 {
@@ -6,5 +7,8 @@ namespace InteractionSystem
     {
         List<IInteractable> InspectInteractables{ get; }
         void Inspect();
+        Action OnInspect{get; set;}
+        Action OnInspectEnded{get; set;}
+
     }
 }
