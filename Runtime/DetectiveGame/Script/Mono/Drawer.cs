@@ -1,8 +1,10 @@
 ﻿using System;
+using DetectiveGame.Interactable.Parts;
+using InteractionSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace InteractionSystem
+namespace DetectiveGame.Interactable
 {
     public class Drawer : MonoBehaviour, IInteractable
     {

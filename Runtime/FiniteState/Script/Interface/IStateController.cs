@@ -7,17 +7,4 @@ namespace FiniteState
         void UpdateState();
     }
     
-    public class DoorStateController : IStateController
-    {
-        public IState CurrentState { get; private set; }
-        public void SetCurrentState(IState state)
-        {
-            CurrentState = state;
-        }
-
-        public void UpdateState()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
 }

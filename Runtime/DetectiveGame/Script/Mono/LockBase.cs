@@ -1,7 +1,9 @@
 using System;
+using AudioSystem;
+using InteractionSystem;
 using UnityEngine;
 
-namespace InteractionSystem
+namespace DetectiveGame.Interactable
 {
     public abstract class LockBase : MonoBehaviour, ILockable, IAudible
     {

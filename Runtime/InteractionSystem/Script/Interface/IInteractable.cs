@@ -9,6 +9,4 @@ namespace InteractionSystem
         Interaction[] Interactions{ get; }
         void Interact(int index);
     }
-
-
 }

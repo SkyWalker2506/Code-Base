@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace InteractionSystem
+namespace AudioSystem
 {
     public interface IAudible
     {

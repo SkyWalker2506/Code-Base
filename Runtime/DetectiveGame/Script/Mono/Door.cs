@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using DetectiveGame.Interactable.Parts;
+using InteractionSystem;
+using UnityEngine;
 
-namespace InteractionSystem
+namespace DetectiveGame.Interactable
 {
     public class Door : MonoBehaviour, IInteractable
     {

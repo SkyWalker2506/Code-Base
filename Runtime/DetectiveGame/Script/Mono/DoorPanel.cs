@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using AudioSystem;
+using InteractionSystem;
+using UnityEngine;
 
-namespace InteractionSystem
+namespace DetectiveGame.Interactable.Parts
 {
-    public class DrawerPanel : OpenableMovingBase, IAudible
+    public class DoorPanel : OpenableRotatingBase, IAudible
     {
         [field: SerializeField] public AudioSource AudioSource { get; private set; }
         public AudioClip AudioClip { get; private set; }
