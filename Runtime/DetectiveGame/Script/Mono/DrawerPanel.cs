@@ -29,7 +29,11 @@ namespace DetectiveGame.Interactable.Parts
             InspectInteractables = new List<IInteractable>();
             foreach (GameObject inspectInteractable in inspectInteractables)
             {
-                InspectInteractables.Add(inspectInteractable.GetComponent<IInteractable>());
+                if (inspectInteractable.TryGetComponent(out IInteractable interactable))
+                {
+                    InspectInteractables.Add(interactable);
+                    interactable.transform.gameObject.layer = 0;
+                }
             }
         }
 
@@ -80,13 +84,22 @@ namespace DetectiveGame.Interactable.Parts
 
         public void Inspect()
         {
-            Invoke(nameof(OnInspect), 1);
+            Invoke(nameof(OnInspected), 1);
+        }
+
+        void OnInspected()
+        {
+            OnInspect?.Invoke();
         }
 
         public void StopInspect()
         {
-            Invoke(nameof(OnInspectEnded), 1);
+            Invoke(nameof(OnStopInspect), 1);
         }
 
+        void OnStopInspect()
+        {
+            OnInspectEnded?.Invoke();
+        }
     }
 }

@@ -190,7 +190,6 @@ namespace DetectiveGame.Interactable
             currentPanel.StopFocus();
             OnFocusEnded();
         }
-
         
         private void CloseDrawer()
         {
@@ -241,16 +240,29 @@ namespace DetectiveGame.Interactable
         
         void OnInspected()
         {
-            Interactions = new List<Interaction> {closeInspectInteraction};
+            SetInspectedInteractions();
+            currentPanel.FocusedInspectable.OnInteracted += OnInspectedInteracted;
+            IsInteractable = true;
+        }
+
+        private void SetInspectedInteractions()
+        {
+            Interactions = new List<Interaction> { closeInspectInteraction };
             foreach (Interaction interaction in currentPanel.FocusedInspectable.Interactions)
             {
                 Interactions.Add(interaction);
             }
+        }
+
+        void OnInspectedInteracted()
+        {
+            SetInspectedInteractions();
             IsInteractable = true;
         }
         
         void OnInspectEnded()
         {
+            currentPanel.FocusedInspectable.OnInteracted -= OnInspectedInteracted;
             OnFocused();
         }
     }

@@ -22,6 +22,7 @@ namespace DetectiveGame.Interactable
                 InteractionText = "Close",
                 Interact = Close
             };
+            Interactions = new List<Interaction> { readInteraction };
         }
 
         void Read()
@@ -38,12 +39,14 @@ namespace DetectiveGame.Interactable
         {
             Interactions = new List<Interaction> { closeInteraction };
             IsInteractable = true;
+            OnInteracted?.Invoke();
         }
         
         void OnClosed()
         {
             Interactions = new List<Interaction> { readInteraction };
             IsInteractable = true;
+            OnInteracted?.Invoke();
         }
 
     }

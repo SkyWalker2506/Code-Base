@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using InteractionSystem;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace DetectiveGame.Interactable
         public bool IsInteractable { get; protected set; }
         public List<Interaction> Interactions { get; protected set; }
     
+        public Action OnInteracted { get; set; }
         private void Awake()
         {
             Initialize();
@@ -21,5 +23,6 @@ namespace DetectiveGame.Interactable
             IsInteractable = false;
             Interactions[index].Interact();
         }
+
     }
 }

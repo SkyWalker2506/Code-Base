@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CodeBase.Core;
 
@@ -8,5 +9,6 @@ namespace InteractionSystem
         bool IsInteractable{ get; }
         List<Interaction> Interactions{ get; }
         void Interact(int index);
+        Action OnInteracted{ get; set; }
     }
 }
