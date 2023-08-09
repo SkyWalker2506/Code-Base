@@ -7,8 +7,11 @@ namespace InteractionSystem
     public interface IInteractable : IHaveTransform
     {
         bool IsInteractable{ get; }
-        List<Interaction> Interactions{ get; }
+        List<Interaction> Interactions { get; }
         void Interact(int index);
         Action OnInteracted{ get; set; }
+        void SetInteractable(bool isInteractable);
+        void SetInteractions(List<Interaction> Interactions);
+
     }
 }

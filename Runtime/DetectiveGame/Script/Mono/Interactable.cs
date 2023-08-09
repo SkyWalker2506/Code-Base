@@ -7,10 +7,11 @@ namespace DetectiveGame.Interactable
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
-        public bool IsInteractable { get; protected set; }
+        public bool IsInteractable { get; private set; }
         public List<Interaction> Interactions { get; protected set; }
     
         public Action OnInteracted { get; set; }
+
         private void Awake()
         {
             Initialize();
@@ -22,6 +23,16 @@ namespace DetectiveGame.Interactable
         {
             IsInteractable = false;
             Interactions[index].Interact();
+        }
+        
+        public void SetInteractable(bool isInteractable)
+        {
+            IsInteractable = isInteractable;
+        }
+
+        public void SetInteractions(List<Interaction> interactions)
+        {
+            Interactions = interactions;
         }
 
     }

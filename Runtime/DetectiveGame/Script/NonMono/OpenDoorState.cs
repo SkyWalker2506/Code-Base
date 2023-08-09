@@ -1,11 +1,41 @@
 ﻿using System.Collections.Generic;
 using DetectiveGame.Interactable.Parts;
 using InteractionSystem;
-using UnityEngine;
 
-namespace DetectiveGame.Interactable
+namespace DetectiveGame.FiniteStateSystem
 {
-    public class Door : Interactable
+    
+    
+    public class OpenDoorState : InteractableState
+    {
+        private DoorPanel doorPanel;
+        private Interaction closeInteraction;
+
+        public OpenDoorState(DoorStateController interactableStateController, DoorPanel doorPanel) : base(interactableStateController)
+        {
+            this.doorPanel = doorPanel;
+            closeInteraction = new Interaction
+            {
+                InteractionText = "Close",
+                Interact = doorPanel.Close
+            };
+        }
+
+        public override void OnStateEnter()
+        {
+            base.OnStateEnter();
+            doorPanel.OnOpened += OnDoorOpened;
+        }
+        
+        void OnDoorOpened()
+        {
+            InteractableStateController.Interactable.SetInteractions(new List<Interaction> { closeInteraction });
+            InteractableStateController.Interactable.SetInteractable(true);
+        }
+
+    }
+    /*
+    public class Door : Interactable.Interactable
     {
         [SerializeField] private DoorPanel doorPanel;
         [SerializeField] private LockBase doorLock;
@@ -27,8 +57,7 @@ namespace DetectiveGame.Interactable
                 doorLock.OnLocked += OnDoorLocked;
                 doorLock.OnUnlocked += OnDoorUnLocked;
             }
-            SetInteractable(true);
-
+            IsInteractable = true;
         }
 
         private void OnDisable()
@@ -40,8 +69,7 @@ namespace DetectiveGame.Interactable
                 doorLock.OnLocked -= OnDoorLocked;
                 doorLock.OnUnlocked -= OnDoorUnLocked;
             }
-            SetInteractable(false);
-
+            IsInteractable = false;
         }
 
         protected override void Initialize()
@@ -84,29 +112,26 @@ namespace DetectiveGame.Interactable
         void OnDoorOpened()
         {
             Interactions = new List<Interaction> { closeInteraction };
-            SetInteractable(true);
-
+            IsInteractable = true;
         }
         
         void OnDoorClosed()
         {
             Interactions = new List<Interaction> { openInteraction };
-            SetInteractable(true);
-
+            IsInteractable = true;
         }
 
         void OnDoorLocked()
         {
             Interactions = new List<Interaction> { unlockInteraction};
-            SetInteractable(true);
-
+            IsInteractable = true;
         }
         
         void OnDoorUnLocked()
         {
             Interactions = new List<Interaction> { openInteraction};
-            SetInteractable(true);
-
+            IsInteractable = true;
         }
     }
+    */
 }

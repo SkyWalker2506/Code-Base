@@ -44,7 +44,8 @@ namespace DetectiveGame.Interactable
             {
                 drawerLock.OnUnlocked += OnDrawerUnLocked;
             }
-            IsInteractable = true;
+            SetInteractable(true);
+
         }
 
         private void OnDisable()
@@ -61,7 +62,8 @@ namespace DetectiveGame.Interactable
             {
                 drawerLock.OnUnlocked -= OnDrawerUnLocked;
             }
-            IsInteractable = false;
+            SetInteractable(false);
+
         }
         
         protected override void Initialize()
@@ -200,25 +202,26 @@ namespace DetectiveGame.Interactable
         void OnDrawerOpened()
         {
             Interactions = new List<Interaction> {openNextInteraction, focusInteraction, closeInteraction };
-            IsInteractable = true;
+            SetInteractable(true);
+
         }
         
         void OnDrawerClosed()
         {
             Interactions = new List<Interaction> { openInteraction };
-            IsInteractable = true;
+            SetInteractable(true);
         }
 
         void OnDrawerLocked()
         {
             Interactions = new List<Interaction> { unlockInteraction};
-            IsInteractable = true;
+            SetInteractable(true);
         }
         
         void OnDrawerUnLocked()
         {
             Interactions = new List<Interaction> { openInteraction};
-            IsInteractable = true;
+            SetInteractable(true);
         }
         private void OnFocused()
         {
@@ -230,7 +233,7 @@ namespace DetectiveGame.Interactable
             {
                 Interactions = new List<Interaction> { unfocusInteraction };
             }
-            IsInteractable = true;
+            SetInteractable(true);
         }
 
         private void OnFocusEnded()
@@ -242,7 +245,8 @@ namespace DetectiveGame.Interactable
         {
             SetInspectedInteractions();
             currentPanel.FocusedInspectable.OnInteracted += OnInspectedInteracted;
-            IsInteractable = true;
+            SetInteractable(true);
+
         }
 
         private void SetInspectedInteractions()
@@ -257,7 +261,7 @@ namespace DetectiveGame.Interactable
         void OnInspectedInteracted()
         {
             SetInspectedInteractions();
-            IsInteractable = true;
+            SetInteractable(true);
         }
         
         void OnInspectEnded()
