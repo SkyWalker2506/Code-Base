@@ -6,7 +6,8 @@ namespace DetectiveGame.FiniteStateSystem
     public abstract class InteractableStateController : IStateController
     {
         public IInteractable Interactable { get; }
-        public InteractableStateController(IInteractable interactable)
+
+        protected InteractableStateController(IInteractable interactable)
         {
             Interactable = interactable;
         }

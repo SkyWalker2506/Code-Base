@@ -9,6 +9,5 @@ namespace InteractionSystem
         void Inspect();
         Action OnInspect{get; set;}
         Action OnInspectEnded{get; set;}
-
     }
 }

@@ -35,5 +35,17 @@ namespace DetectiveGame.Interactable
             Interactions = interactions;
         }
 
+        public void AddInteraction(Interaction interaction)
+        {
+            Interactions.Add(interaction);
+        }
+
+        public void RemoveInteraction(Interaction interaction)
+        {
+            if (Interactions.Contains(interaction))
+            {
+                Interactions.Remove(interaction);
+            }
+        }
     }
 }

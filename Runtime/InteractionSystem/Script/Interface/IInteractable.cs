@@ -11,7 +11,8 @@ namespace InteractionSystem
         void Interact(int index);
         Action OnInteracted{ get; set; }
         void SetInteractable(bool isInteractable);
-        void SetInteractions(List<Interaction> Interactions);
-
+        void SetInteractions(List<Interaction> interactions);
+        void AddInteraction(Interaction interaction);
+        void RemoveInteraction(Interaction interaction);
     }
 }

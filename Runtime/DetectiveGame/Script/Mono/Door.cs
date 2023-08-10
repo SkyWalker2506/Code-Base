@@ -7,10 +7,10 @@ namespace DetectiveGame.Interactable
 {
     public class Door : Interactable
     {
-        [SerializeField] private DoorPanel doorPanel;
-        [SerializeField] private LockBase doorLock;
+        [field:SerializeField] public DoorPanel DoorPanel { get; private set; }
+        [field:SerializeField] public LockBase DoorLock{ get; private set; }
 
-        [SerializeField] private bool isLockable; 
+        [field:SerializeField] public bool IsLockable{ get; private set; } 
         [SerializeField] private bool initialLocked; 
         [SerializeField] private bool initialDoorOpen; 
 
@@ -20,12 +20,12 @@ namespace DetectiveGame.Interactable
 
         private void OnEnable()
         {
-            doorPanel.OnOpened += OnDoorOpened;
-            doorPanel.OnClosed += OnDoorClosed;
-            if (isLockable)
+            DoorPanel.OnOpened += OnDoorOpened;
+            DoorPanel.OnClosed += OnDoorClosed;
+            if (IsLockable)
             {
-                doorLock.OnLocked += OnDoorLocked;
-                doorLock.OnUnlocked += OnDoorUnLocked;
+                DoorLock.OnLocked += OnDoorLocked;
+                DoorLock.OnUnlocked += OnDoorUnLocked;
             }
             SetInteractable(true);
 
@@ -33,12 +33,12 @@ namespace DetectiveGame.Interactable
 
         private void OnDisable()
         {
-            doorPanel.OnOpened -= OnDoorOpened;
-            doorPanel.OnClosed -= OnDoorClosed;
-            if (isLockable)
+            DoorPanel.OnOpened -= OnDoorOpened;
+            DoorPanel.OnClosed -= OnDoorClosed;
+            if (IsLockable)
             {
-                doorLock.OnLocked -= OnDoorLocked;
-                doorLock.OnUnlocked -= OnDoorUnLocked;
+                DoorLock.OnLocked -= OnDoorLocked;
+                DoorLock.OnUnlocked -= OnDoorUnLocked;
             }
             SetInteractable(false);
 
@@ -49,20 +49,20 @@ namespace DetectiveGame.Interactable
             openInteraction = new Interaction
             {
                 InteractionText = "Open",
-                Interact = doorPanel.Open
+                Interact = DoorPanel.Open
             };
             closeInteraction = new Interaction
             {
                 InteractionText = "Close",
-                Interact = doorPanel.Close
+                Interact = DoorPanel.Close
             };
             unlockInteraction = new Interaction
             {
                 InteractionText = "Unlock",
-                Interact = doorLock.Unlock
+                Interact = DoorLock.Unlock
             };
             
-            doorPanel.Initialize(initialDoorOpen);
+            DoorPanel.Initialize(initialDoorOpen);
             if (initialDoorOpen)
             {
                 OnDoorOpened();
@@ -70,7 +70,7 @@ namespace DetectiveGame.Interactable
             else
             {
                 OnDoorClosed();
-                if (isLockable && initialLocked)
+                if (IsLockable && initialLocked)
                 {
                     OnDoorLocked();
                 }
