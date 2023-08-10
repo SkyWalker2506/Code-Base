@@ -1,20 +1,16 @@
-﻿using DetectiveGame.Interactable;
-
-namespace DetectiveGame.FiniteStateSystem
+﻿namespace DetectiveGame.FiniteStateSystem
 {
-    public class LockingDoorState : InteractableState
+    public class LockingDoorState : DoorState
     {
-        private Door door;
-
         public LockingDoorState(DoorStateController interactableStateController) : base(interactableStateController)
         {
-            door = interactableStateController.Door;
         }
 
         public override void OnStateEnter()
         {
             base.OnStateEnter();
             door.DoorLock.OnLocked += OnDoorLocked;
+            door.DoorLock.Lock();
         }
         
         void OnDoorLocked()

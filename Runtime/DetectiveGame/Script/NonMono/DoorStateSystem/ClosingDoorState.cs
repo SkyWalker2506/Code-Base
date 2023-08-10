@@ -3,25 +3,22 @@ using InteractionSystem;
 
 namespace DetectiveGame.FiniteStateSystem
 {
-    public class ClosingDoorState : InteractableState
+    public class ClosingDoorState : DoorState
     {
-        private Door door;
-        private Interaction openInteraction;
-
         public ClosingDoorState(DoorStateController interactableStateController) : base(interactableStateController)
         {
-            door = interactableStateController.Door;
         }
 
         public override void OnStateEnter()
         {
             base.OnStateEnter();
             door.DoorPanel.OnClosed += OnDoorClosed;
+            door.DoorPanel.Close();
         }
         
         void OnDoorClosed()
         {
-            ISC.SetCurrentState(new ClosedDoorState((DoorStateController)ISC));
+            DISC.SetCurrentState(new ClosedDoorState(DISC));
         }
 
         public override void OnStateExit()

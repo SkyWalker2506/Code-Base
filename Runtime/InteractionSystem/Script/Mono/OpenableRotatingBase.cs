@@ -14,16 +14,18 @@ namespace InteractionSystem
         public Action OnOpened { get; set; }
         public Action OnClosed { get; set; }
 
-        private void Start()
+        public void SetOpened()
         {
-            transform.localRotation = IsOpened? Quaternion.Euler(OpenedRotation):Quaternion.Euler(ClosedRotation);
-        }
-
-        public void Initialize(bool isOpened)
-        {
-            IsOpened = isOpened;
+            transform.localRotation = Quaternion.Euler(OpenedRotation);
+            IsOpened = true;
         }
         
+        public void SetClosed()
+        {
+            transform.localRotation = Quaternion.Euler(ClosedRotation);
+            IsOpened = false;
+        }
+
         public virtual void Open()
         {
             transform.DOLocalRotate(OpenedRotation, OpeningDuration).OnComplete(() =>
@@ -41,7 +43,7 @@ namespace InteractionSystem
                 OnClosed?.Invoke();
             });
         }
-
+        
         public void Switch()
         {
             if (IsOpened)

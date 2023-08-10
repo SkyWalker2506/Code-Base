@@ -6,13 +6,13 @@ namespace DetectiveGame.FiniteStateSystem
     public abstract class InteractableStateController : IStateController
     {
         public IInteractable Interactable { get; }
+        public IState CurrentState { get; private set; }
 
         protected InteractableStateController(IInteractable interactable)
         {
             Interactable = interactable;
         }
         
-        public IState CurrentState { get; private set; }
         public void SetCurrentState(IState state)
         {
             if (CurrentState != null)

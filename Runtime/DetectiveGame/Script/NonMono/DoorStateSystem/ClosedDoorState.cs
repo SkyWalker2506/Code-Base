@@ -1,38 +1,35 @@
-﻿using System.Collections.Generic;
-using DetectiveGame.Interactable;
-using InteractionSystem;
-
-namespace DetectiveGame.FiniteStateSystem
+﻿namespace DetectiveGame.FiniteStateSystem
 {
-    public class ClosedDoorState : InteractableState
+    public class ClosedDoorState : DoorState
     {
-        private Door door;
-
         public ClosedDoorState(DoorStateController interactableStateController) : base(interactableStateController)
         {
-            door = interactableStateController.Door;
         }
 
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            ISC.Interactable.SetInteraction( 
+            
+            door.DoorPanel.SetClosed();
+            
+            DISC.Interactable.SetInteraction( 
                 new()
                 {
                     InteractionText = "Open",
-                    Interact = () => ISC.SetCurrentState(new OpeningDoorState((DoorStateController)ISC))
+                    Interact = () => DISC.SetCurrentState(new OpeningDoorState(DISC))
                 });
             
             if (door.IsLockable)
             {
-                ISC.Interactable.AddInteraction(
+                DISC.Interactable.AddInteraction(
                     new()
                     {
                         InteractionText = "Lock",
-                        Interact = () => ISC.SetCurrentState(new OpeningDoorState((DoorStateController)ISC))
+                        Interact = () => DISC.SetCurrentState(new LockingDoorState(DISC))
                     });
             }
-            ISC.Interactable.SetInteractable(true);
+            DISC.Interactable.SetInteractable(true);
         }
+        
     }
 }

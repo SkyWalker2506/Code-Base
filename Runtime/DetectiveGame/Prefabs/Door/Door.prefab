@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a51df765994442b96b654f5677fbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorPanel: {fileID: 564223682051656633}
-  doorLock: {fileID: 299118329038786775}
-  isLockable: 1
-  initialLocked: 0
-  initialDoorOpen: 0
+  <DoorPanel>k__BackingField: {fileID: 564223682051656633}
+  <DoorLock>k__BackingField: {fileID: 299118329038786775}
+  <IsLockable>k__BackingField: 1
+  <InitialLocked>k__BackingField: 1
+  <InitialDoorOpen>k__BackingField: 0
 --- !u!65 &1106904353497453871
 BoxCollider:
   m_ObjectHideFlags: 0

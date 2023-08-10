@@ -12,7 +12,7 @@ namespace DetectiveGame.Interactable
     
         public Action OnInteracted { get; set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Initialize();
         }

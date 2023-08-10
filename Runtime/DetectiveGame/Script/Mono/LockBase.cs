@@ -15,6 +15,17 @@ namespace DetectiveGame.Interactable
         public bool IsLocked { get; protected set; }
         public Action OnLocked { get; set; }
         public Action OnUnlocked { get; set; }
+
+
+        public void SetLocked()
+        {
+            IsLocked = true;
+        }
+        
+        public void SetUnlock()
+        {
+            IsLocked = false;
+        }
         
         public virtual void Lock()
         {
