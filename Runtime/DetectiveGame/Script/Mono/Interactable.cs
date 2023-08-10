@@ -29,6 +29,11 @@ namespace DetectiveGame.Interactable
         {
             IsInteractable = isInteractable;
         }
+        
+        public void SetInteraction(Interaction interaction)
+        {
+            Interactions = new() { interaction };
+        }
 
         public void SetInteractions(List<Interaction> interactions)
         {

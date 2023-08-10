@@ -16,12 +16,12 @@ namespace DetectiveGame.FiniteStateSystem
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            ISC.Interactable.SetInteractions(new List<Interaction> { 
+            ISC.Interactable.SetInteraction( 
                 new()
                 {
                     InteractionText = "Open",
                     Interact = () => ISC.SetCurrentState(new OpeningDoorState((DoorStateController)ISC))
-                }});
+                });
             
             if (door.IsLockable)
             {

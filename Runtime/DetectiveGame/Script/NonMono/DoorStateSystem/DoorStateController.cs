@@ -3,7 +3,6 @@ using InteractionSystem;
 
 namespace DetectiveGame.FiniteStateSystem
 {
-
     public class DoorStateController : InteractableStateController
     {
         public Door Door { get; }

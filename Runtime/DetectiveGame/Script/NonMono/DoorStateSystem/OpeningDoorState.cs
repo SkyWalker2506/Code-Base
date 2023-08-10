@@ -1,12 +1,10 @@
 ﻿using DetectiveGame.Interactable;
-using InteractionSystem;
 
 namespace DetectiveGame.FiniteStateSystem
 {
     public class OpeningDoorState : InteractableState
     {
         private Door door;
-        private Interaction closeInteraction;
 
         public OpeningDoorState(DoorStateController interactableStateController) : base(interactableStateController)
         {
@@ -26,8 +24,8 @@ namespace DetectiveGame.FiniteStateSystem
 
         public override void OnStateExit()
         {
-            base.OnStateExit();
             door.DoorPanel.OnOpened -= OnDoorOpened;
+            base.OnStateExit();
         }
     }
 }
