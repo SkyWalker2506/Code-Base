@@ -23,6 +23,18 @@ namespace InteractionSystem
         {
             IsOpened = isOpened;
         }
+        
+        public void SetOpened()
+        {
+            transform.localPosition = OpenedPosition;
+            IsOpened = true;
+        }
+
+        public void SetClosed()
+        {
+            transform.localPosition = ClosedPosition;
+            IsOpened = false;
+        }
 
         public virtual void Open()
         {

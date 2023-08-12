@@ -5,7 +5,6 @@
         public LockingDoorState(DoorStateController interactableStateController) : base(interactableStateController)
         {
         }
-
         public override void OnStateEnter()
         {
             base.OnStateEnter();
@@ -15,7 +14,7 @@
         
         void OnDoorLocked()
         {
-            ISC.SetCurrentState(new LockedDoorState((DoorStateController)ISC));
+            DISC.SetCurrentState(new LockedDoorState(DISC));
         }
 
         public override void OnStateExit()

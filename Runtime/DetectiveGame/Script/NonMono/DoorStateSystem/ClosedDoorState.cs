@@ -30,6 +30,5 @@
             }
             DISC.Interactable.SetInteractable(true);
         }
-        
     }
 }

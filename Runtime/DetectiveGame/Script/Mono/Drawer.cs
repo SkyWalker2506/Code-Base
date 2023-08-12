@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using DetectiveGame.Interactable.Parts;
 using InteractionSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DetectiveGame.Interactable
 {
     public class Drawer : Interactable
     {
-        [SerializeField] private LockBase drawerLock;
+        [field:SerializeField] public LockBase DrawerLock{ get; private set; }
         [SerializeField] private DrawerPanel[] drawerPanels;
-        DrawerPanel currentPanel => drawerPanels[openedDrawerIndex];
+        public DrawerPanel CurrentPanel => drawerPanels[openedDrawerIndex];
+        public DrawerPanel NextPanel => drawerPanels[(openedDrawerIndex+1)%drawerPanels.Length];
 
+        [field:SerializeField] public bool IsLockable{ get; private set; }
         [SerializeField] private bool initialLocked; 
-        [FormerlySerializedAs("openDrawerIndex")]
         [Tooltip("-1 means all drawers are closed")]
         [SerializeField] private int openInitialDrawerIndex = -1; 
+        public int OpenedDrawerIndex
+        {
+            get => openedDrawerIndex;
+            set => openedDrawerIndex = value;
+        } 
         private int openedDrawerIndex = -1; 
+
         bool isDrawerOpened => openedDrawerIndex>=0;
         
         private Interaction openInteraction;
@@ -42,7 +48,7 @@ namespace DetectiveGame.Interactable
             
             if (initialLocked)
             {
-                drawerLock.OnUnlocked += OnDrawerUnLocked;
+                DrawerLock.OnUnlocked += OnDrawerUnLocked;
             }
             SetInteractable(true);
 
@@ -60,7 +66,7 @@ namespace DetectiveGame.Interactable
             
             if (initialLocked)
             {
-                drawerLock.OnUnlocked -= OnDrawerUnLocked;
+                DrawerLock.OnUnlocked -= OnDrawerUnLocked;
             }
             SetInteractable(false);
 
@@ -90,7 +96,7 @@ namespace DetectiveGame.Interactable
             unlockInteraction = new Interaction
             {
                 InteractionText = "Unlock",
-                Interact = drawerLock.Unlock
+                Interact = DrawerLock.Unlock
             };
             inspectInteraction = new Interaction
             {
@@ -160,36 +166,36 @@ namespace DetectiveGame.Interactable
             index %= drawerPanels.Length; 
             if (isDrawerOpened)
             {
-                currentPanel.Close();
+                CurrentPanel.Close();
             }
             openedDrawerIndex = index;
-            currentPanel.Open();
+            CurrentPanel.Open();
         }
         
         void InspectDrawer()
         {
-            currentPanel.Inspect();
+            CurrentPanel.Inspect();
         }
 
         void StopInspecting()
         {
-            currentPanel.StopInspect();
+            CurrentPanel.StopInspect();
         }
 
         private void Focus()
         {
-            currentPanel.Focus();
+            CurrentPanel.Focus();
             OnFocused();
         }
 
         private void FocusToNext()
         {
-            currentPanel.FocusNext();
+            CurrentPanel.FocusNext();
             OnFocused();
         }
         private void StopFocusing()
         {
-            currentPanel.StopFocus();
+            CurrentPanel.StopFocus();
             OnFocusEnded();
         }
         
@@ -225,7 +231,7 @@ namespace DetectiveGame.Interactable
         }
         private void OnFocused()
         {
-            if (currentPanel.FocusedInspectable != null)
+            if (CurrentPanel.FocusedInspectable != null)
             {
                 Interactions = new List<Interaction> { inspectInteraction, focusNextInteraction, unfocusInteraction };
             }
@@ -244,7 +250,7 @@ namespace DetectiveGame.Interactable
         void OnInspected()
         {
             SetInspectedInteractions();
-            currentPanel.FocusedInspectable.OnInteracted += OnInspectedInteracted;
+            CurrentPanel.FocusedInspectable.OnInteracted += OnInspectedInteracted;
             SetInteractable(true);
 
         }
@@ -252,7 +258,7 @@ namespace DetectiveGame.Interactable
         private void SetInspectedInteractions()
         {
             Interactions = new List<Interaction> { closeInspectInteraction };
-            foreach (Interaction interaction in currentPanel.FocusedInspectable.Interactions)
+            foreach (Interaction interaction in CurrentPanel.FocusedInspectable.Interactions)
             {
                 Interactions.Add(interaction);
             }
@@ -266,7 +272,7 @@ namespace DetectiveGame.Interactable
         
         void OnInspectEnded()
         {
-            currentPanel.FocusedInspectable.OnInteracted -= OnInspectedInteracted;
+            CurrentPanel.FocusedInspectable.OnInteracted -= OnInspectedInteracted;
             OnFocused();
         }
     }

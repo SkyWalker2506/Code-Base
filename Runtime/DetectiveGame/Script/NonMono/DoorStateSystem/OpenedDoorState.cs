@@ -14,13 +14,13 @@ namespace DetectiveGame.FiniteStateSystem
             base.OnStateEnter();
             door.DoorPanel.SetOpened();
 
-            ISC.Interactable.SetInteractions(new List<Interaction> { 
+            DISC.Interactable.SetInteraction( 
                 new()
                 {
                     InteractionText = "Close",
-                    Interact = () => ISC.SetCurrentState(new ClosingDoorState((DoorStateController)ISC))
-                }});
-            ISC.Interactable.SetInteractable(true);
+                    Interact = () => ISC.SetCurrentState(new ClosingDoorState(DISC))
+                });
+            DISC.Interactable.SetInteractable(true);
         }
 
     }

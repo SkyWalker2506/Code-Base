@@ -10,5 +10,7 @@ namespace InteractionSystem
         Action OnClosed{get; set;}
         void Open();
         void Close();
+        public void SetOpened();
+        public void SetClosed();
     }
 }
