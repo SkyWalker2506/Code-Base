@@ -14,6 +14,7 @@ namespace InteractionSystem
         void SetInteraction(Interaction interaction);
         void SetInteractions(List<Interaction> interactions);
         void AddInteraction(Interaction interaction);
+        void AddInteractions(List<Interaction> inspectedInspectableInteractions);
         void RemoveInteraction(Interaction interaction);
     }
 }

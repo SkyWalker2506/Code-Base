@@ -1,4 +1,6 @@
-﻿namespace DetectiveGame.FiniteStateSystem
+﻿using DetectiveGame.PlayerSystem;
+
+namespace DetectiveGame.FiniteStateSystem
 {
     public class ClosedDoorState : DoorState
     {
@@ -8,8 +10,8 @@
 
         public override void OnStateEnter()
         {
+
             base.OnStateEnter();
-            
             door.DoorPanel.SetClosed();
             
             DISC.Interactable.SetInteraction( 

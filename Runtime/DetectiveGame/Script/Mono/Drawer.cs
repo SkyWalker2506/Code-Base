@@ -190,7 +190,7 @@ namespace DetectiveGame.Interactable
 
         private void FocusToNext()
         {
-            CurrentPanel.FocusNext();
+            CurrentPanel.InspectNext();
             OnFocused();
         }
         private void StopFocusing()
@@ -231,7 +231,7 @@ namespace DetectiveGame.Interactable
         }
         private void OnFocused()
         {
-            if (CurrentPanel.FocusedInspectable != null)
+            if (CurrentPanel.InspectedObject != null)
             {
                 Interactions = new List<Interaction> { inspectInteraction, focusNextInteraction, unfocusInteraction };
             }
@@ -250,7 +250,7 @@ namespace DetectiveGame.Interactable
         void OnInspected()
         {
             SetInspectedInteractions();
-            CurrentPanel.FocusedInspectable.OnInteracted += OnInspectedInteracted;
+            CurrentPanel.InspectedObject.OnInteracted += OnInspectedInteracted;
             SetInteractable(true);
 
         }
@@ -258,7 +258,7 @@ namespace DetectiveGame.Interactable
         private void SetInspectedInteractions()
         {
             Interactions = new List<Interaction> { closeInspectInteraction };
-            foreach (Interaction interaction in CurrentPanel.FocusedInspectable.Interactions)
+            foreach (Interaction interaction in CurrentPanel.InspectedObject.Interactions)
             {
                 Interactions.Add(interaction);
             }
@@ -272,7 +272,7 @@ namespace DetectiveGame.Interactable
         
         void OnInspectEnded()
         {
-            CurrentPanel.FocusedInspectable.OnInteracted -= OnInspectedInteracted;
+            CurrentPanel.InspectedObject.OnInteracted -= OnInspectedInteracted;
             OnFocused();
         }
     }

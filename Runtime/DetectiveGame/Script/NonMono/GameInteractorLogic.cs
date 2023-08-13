@@ -31,7 +31,7 @@ namespace DetectiveGame.InteractionSystem
         {
             if (currentInteractable != null)
             {
-                Interactor.Interact(currentInteractable,index);
+                Interactor.Interact(currentInteractable, index);
                 currentInteractable = null;
                 Interactor.InteractionUI.HideInteractionUI();
             }
@@ -41,6 +41,7 @@ namespace DetectiveGame.InteractionSystem
         {
             currentInteractable = Interactor.GetInteractable();
         }
+        
         private void SetInteractionUI()
         {
             if (currentInteractable == null)

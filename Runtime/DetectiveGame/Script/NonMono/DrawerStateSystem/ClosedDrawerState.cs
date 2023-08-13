@@ -9,14 +9,12 @@
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            
             drawer.CurrentPanel.SetClosed();
-            
             DISC.Interactable.SetInteraction( 
                 new()
                 {
                     InteractionText = "Open",
-                    Interact = () => DISC.SetCurrentState(new OpenedDrawerState(DISC))
+                    Interact = () => DISC.SetCurrentState(new OpeningDrawerState(DISC))
                 });
             
             if (drawer.IsLockable)

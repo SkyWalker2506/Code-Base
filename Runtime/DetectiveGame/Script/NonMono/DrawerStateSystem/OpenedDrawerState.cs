@@ -18,15 +18,25 @@ namespace DetectiveGame.FiniteStateSystem
                 new()
                 {
                     InteractionText = "Open Next",
-                    Interact = () => DISC.SetCurrentState(new ClosingDrawerState(DISC))
+                    Interact = () => DISC.SetCurrentState(new OpeningNextDrawerState(DISC))
                 },
                 new()
                 {
-                InteractionText = "Close",
-                Interact = () => DISC.SetCurrentState(new ClosingDrawerState(DISC))
+                    InteractionText = "Close",
+                    Interact = () => DISC.SetCurrentState(new ClosingDrawerState(DISC))
                 }
             }
             );
+            if (drawer.CurrentPanel.Inspectables.Count > 0)
+            {
+                drawer.CurrentPanel.SetInspectableIndex(0);
+                DISC.Interactable.AddInteraction(
+                    new()
+                    {
+                        InteractionText = "Inspect",
+                        Interact = () => DISC.SetCurrentState(new InspectingDrawerState(DISC))
+                    });
+            }
             ISC.Interactable.SetInteractable(true);
         }
     }

@@ -53,6 +53,5 @@ namespace InteractionSystem
                 OnClosed?.Invoke();
             });
         }
-
     }
 }

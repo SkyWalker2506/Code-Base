@@ -1,4 +1,6 @@
-﻿namespace DetectiveGame.FiniteStateSystem
+﻿using DetectiveGame.PlayerSystem;
+
+namespace DetectiveGame.FiniteStateSystem
 {
     public class OpeningDoorState : DoorState
     {

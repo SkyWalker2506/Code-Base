@@ -9,18 +9,18 @@
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            drawer.CurrentPanel.OnOpened += OnDoorOpened;
+            drawer.CurrentPanel.OnOpened += OnDrawerOpened;
             drawer.CurrentPanel.Open();
         }
         
-        void OnDoorOpened()
+        void OnDrawerOpened()
         {
             DISC.SetCurrentState(new OpenedDrawerState(DISC));
         }
 
         public override void OnStateExit()
         {
-            drawer.CurrentPanel.OnOpened -= OnDoorOpened;
+            drawer.CurrentPanel.OnOpened -= OnDrawerOpened;
             base.OnStateExit();
         }
     }
