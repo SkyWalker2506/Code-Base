@@ -82,16 +82,11 @@ namespace DetectiveGame.Interactable.Parts
             currentInspectedIndex = (currentInspectedIndex + 1) % Inspectables.Count;
         }
         
-        public void StopFocus()
-        {
-            CameraManager.ActivatePlayerCamera();
-        }
-
         public void Inspect()
         {
             ActivateCamera();
             Camera.LookAt = InspectedObject.transform;
-            Invoke(nameof(OnInspected), 1);
+            Invoke(nameof(OnInspected), .25f);
         }
 
         void OnInspected()
@@ -102,7 +97,7 @@ namespace DetectiveGame.Interactable.Parts
         public void StopInspect()
         {
             CameraManager.ActivatePlayerCamera();
-            Invoke(nameof(OnStopInspect), 1);
+            Invoke(nameof(OnStopInspect), .25f);
         }
 
         void OnStopInspect()

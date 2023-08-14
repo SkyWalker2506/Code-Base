@@ -27,7 +27,7 @@
         {
             drawer.CurrentPanel.OnClosed -= CheckDrawerChanged;
             drawer.NextPanel.OnOpened -= CheckDrawerChanged;
-            drawer.OpenedDrawerIndex++;
+            drawer.CurrentDrawerIndex++;
             base.OnStateExit();
         }
     }

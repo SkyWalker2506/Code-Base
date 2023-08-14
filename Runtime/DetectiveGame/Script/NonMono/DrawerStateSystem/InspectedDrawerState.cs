@@ -14,12 +14,13 @@ namespace DetectiveGame.FiniteStateSystem
             base.OnStateEnter();
             DISC.Interactable.SetInteraction(new Interaction
             {
-                InteractionText = "Close Inspection",
+                InteractionText = "Stop Inspection",
                 Interact = () => DISC.SetCurrentState(new StopInspectingDrawerState(DISC))
             });
-            DISC.Interactable.AddInteractions(drawer.CurrentPanel.InspectedObject.Interactions);
             Input.OnLeft += InspectPrevious;
             Input.OnRight += InspectNext;
+            DISC.Interactable.AddInteractions(drawer.CurrentPanel.InspectedObject.Interactions);
+            drawer.CurrentPanel.InspectedObject.OnInteracted += OnInspectedAction;
             DISC.Interactable.SetInteractable(true);
         }
 
@@ -35,11 +36,17 @@ namespace DetectiveGame.FiniteStateSystem
             DISC.SetCurrentState(new InspectingDrawerState(DISC));
         }
 
+        void OnInspectedAction()
+        {
+            DISC.SetCurrentState(new InspectingDrawerState(DISC));
+        }
+
         public override void OnStateExit()
         {
             base.OnStateExit();
             Input.OnLeft -= InspectPrevious;
             Input.OnRight -= InspectNext;
+            drawer.CurrentPanel.InspectedObject.OnInteracted -= OnInspectedAction;
         }
     }
 }

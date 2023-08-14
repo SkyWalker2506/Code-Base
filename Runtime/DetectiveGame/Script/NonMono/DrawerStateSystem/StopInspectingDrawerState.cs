@@ -1,4 +1,6 @@
-﻿namespace DetectiveGame.FiniteStateSystem
+﻿using DetectiveGame.PlayerSystem;
+
+namespace DetectiveGame.FiniteStateSystem
 {
     public class StopInspectingDrawerState : DrawerState
     {
@@ -15,6 +17,7 @@
         
         void OnInspectEnded()
         {
+            Player.ToggleMovementController(true);
             DISC.SetCurrentState(new OpenedDrawerState(DISC));
         }
 

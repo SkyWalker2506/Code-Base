@@ -485,13 +485,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d26cbc131af474d932ecdb3f7f5eac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawerLock: {fileID: 8183260797253308968}
+  <DrawerLock>k__BackingField: {fileID: 8183260797253308968}
   drawerPanels:
   - {fileID: 4757521538184728845}
   - {fileID: 5629424101057397954}
   - {fileID: 452298377333838517}
-  initialLocked: 1
-  openInitialDrawerIndex: -1
+  <IsLockable>k__BackingField: 1
+  <InitialLocked>k__BackingField: 1
+  OpenInitialDrawerIndex: -1
 --- !u!114 &8183260797253308968
 MonoBehaviour:
   m_ObjectHideFlags: 0

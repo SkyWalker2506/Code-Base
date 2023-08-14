@@ -15,8 +15,20 @@ namespace DetectiveGame.FiniteStateSystem
 
         void Initialize()
         {
+            if (Drawer.OpenInitialDrawerIndex>=0)
+            {
+                SetCurrentState(new OpenedDrawerState(this));
+            }
+            else
+            {
+                SetCurrentState(new ClosedDrawerState(this));
+
+                if (Drawer.IsLockable && Drawer.InitialLocked)
+                {
+                    SetCurrentState(new LockedDrawerState(this));
+                }
+            }
         }
-        
  
     }
 }

@@ -6,4 +6,9 @@ namespace CodeBase.Core
     {
         Transform transform { get; }
     }
+    
+    public interface IHaveName
+    {
+        string Name { get; }
+    }
 }

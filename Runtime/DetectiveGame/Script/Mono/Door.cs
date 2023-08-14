@@ -26,9 +26,7 @@ namespace DetectiveGame.Interactable
 
         private void OnDisable()
         {
-
             SetInteractable(false);
-
         }
     }
 }

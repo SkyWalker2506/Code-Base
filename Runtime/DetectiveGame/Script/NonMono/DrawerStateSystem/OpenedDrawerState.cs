@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DetectiveGame.PlayerSystem;
 using InteractionSystem;
 
 namespace DetectiveGame.FiniteStateSystem
@@ -34,7 +35,11 @@ namespace DetectiveGame.FiniteStateSystem
                     new()
                     {
                         InteractionText = "Inspect",
-                        Interact = () => DISC.SetCurrentState(new InspectingDrawerState(DISC))
+                        Interact = () =>
+                        {
+                            Player.ToggleMovementController(false);
+                            DISC.SetCurrentState(new InspectingDrawerState(DISC));
+                        }
                     });
             }
             ISC.Interactable.SetInteractable(true);

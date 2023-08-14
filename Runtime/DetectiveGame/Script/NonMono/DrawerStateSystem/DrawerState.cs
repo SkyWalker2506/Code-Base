@@ -12,16 +12,5 @@ namespace DetectiveGame.FiniteStateSystem
         {
             drawer = interactableStateController.Drawer;
         }
-        /*
-        private Interaction openInteraction;
-        private Interaction openNextInteraction;
-        private Interaction closeInteraction;
-        private Interaction unlockInteraction;
-        private Interaction inspectInteraction;
-        private Interaction focusNextInteraction;
-        private Interaction closeInspectInteraction;
-        private Interaction focusInteraction;
-        private Interaction unfocusInteraction;
-        */
     }
 }

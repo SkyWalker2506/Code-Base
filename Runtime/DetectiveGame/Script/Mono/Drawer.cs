@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DetectiveGame.FiniteStateSystem;
 using DetectiveGame.Interactable.Parts;
-using InteractionSystem;
 using UnityEngine;
 
 namespace DetectiveGame.Interactable
@@ -10,270 +8,41 @@ namespace DetectiveGame.Interactable
     {
         [field:SerializeField] public LockBase DrawerLock{ get; private set; }
         [SerializeField] private DrawerPanel[] drawerPanels;
-        public DrawerPanel CurrentPanel => drawerPanels[openedDrawerIndex];
-        public DrawerPanel NextPanel => drawerPanels[(openedDrawerIndex+1)%drawerPanels.Length];
-
+        public DrawerPanel CurrentPanel => currentDrawerIndex>=0?drawerPanels[currentDrawerIndex]:null;
+        public DrawerPanel NextPanel => drawerPanels[(currentDrawerIndex+1)%drawerPanels.Length];
         [field:SerializeField] public bool IsLockable{ get; private set; }
-        [SerializeField] private bool initialLocked; 
+        [field:SerializeField] public bool InitialLocked{ get; private set; } 
         [Tooltip("-1 means all drawers are closed")]
-        [SerializeField] private int openInitialDrawerIndex = -1; 
-        public int OpenedDrawerIndex
+        [field:SerializeField] public int OpenInitialDrawerIndex = -1; 
+        public int CurrentDrawerIndex
         {
-            get => openedDrawerIndex;
-            set => openedDrawerIndex = value;
+            get => currentDrawerIndex;
+            set => currentDrawerIndex = value%drawerPanels.Length;
         } 
-        private int openedDrawerIndex = -1; 
+        private int currentDrawerIndex = -1; 
 
-        bool isDrawerOpened => openedDrawerIndex>=0;
-        
-        private Interaction openInteraction;
-        private Interaction openNextInteraction;
-        private Interaction closeInteraction;
-        private Interaction unlockInteraction;
-        private Interaction inspectInteraction;
-        private Interaction focusNextInteraction;
-        private Interaction closeInspectInteraction;
-        private Interaction focusInteraction;
-        private Interaction unfocusInteraction;
-        
+        private DrawerStateController drawerStateController{ get;  set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            CurrentDrawerIndex = OpenInitialDrawerIndex;
+        }
+
+        protected override void Initialize()
+        {
+            drawerStateController = new DrawerStateController(this);
+        }
+
         private void OnEnable()
         {
-            foreach (var drawerPanel in drawerPanels)
-            {
-                drawerPanel.OnOpened += OnDrawerOpened;
-                drawerPanel.OnClosed += OnDrawerClosed;
-                drawerPanel.OnInspect += OnInspected;
-                drawerPanel.OnInspectEnded += OnInspectEnded;
-            }
-            
-            if (initialLocked)
-            {
-                DrawerLock.OnUnlocked += OnDrawerUnLocked;
-            }
             SetInteractable(true);
-
         }
 
         private void OnDisable()
         {
-            foreach (var drawerPanel in drawerPanels)
-            {
-                drawerPanel.OnOpened -= OnDrawerOpened;
-                drawerPanel.OnClosed -= OnDrawerClosed;
-                drawerPanel.OnInspect -= OnInspected;
-                drawerPanel.OnInspectEnded -= OnInspectEnded;
-            }
-            
-            if (initialLocked)
-            {
-                DrawerLock.OnUnlocked -= OnDrawerUnLocked;
-            }
             SetInteractable(false);
-
         }
         
-        protected override void Initialize()
-        {
-            if (drawerPanels.Length == 0)
-            {
-                return;
-            }
-            openInteraction = new Interaction
-            {
-                InteractionText = "Open",
-                Interact = () => OpenDrawer(0)
-            };
-            openNextInteraction = new Interaction
-            {
-                InteractionText = "Open Next",
-                Interact = () => OpenDrawer(openedDrawerIndex+1)
-            };
-            closeInteraction = new Interaction
-            {
-                InteractionText = "Close",
-                Interact = CloseDrawer 
-            };
-            unlockInteraction = new Interaction
-            {
-                InteractionText = "Unlock",
-                Interact = DrawerLock.Unlock
-            };
-            inspectInteraction = new Interaction
-            {
-                InteractionText = "Inspect",
-                Interact = InspectDrawer
-            };
-            focusInteraction = new Interaction
-            {
-                InteractionText = "Focus",
-                Interact = Focus
-            };
-            focusNextInteraction = new Interaction
-            {
-                InteractionText = "Focus to Next",
-                Interact = FocusToNext
-            };
-            
-            unfocusInteraction = new Interaction
-            {
-                InteractionText = "Stop Focusing",
-                Interact = StopFocusing
-            };
-            
-            closeInspectInteraction = new Interaction
-            {
-                InteractionText = "Stop Inspecting",
-                Interact = StopInspecting
-            };
-            
-            focusInteraction = new Interaction
-            {
-                InteractionText = "Focus",
-                Interact = Focus
-            };
-            
-            unfocusInteraction = new Interaction
-            {
-                InteractionText = "Stop Focusing",
-                Interact = StopFocusing
-            };
-
-            
-            openedDrawerIndex = Math.Clamp(openInitialDrawerIndex, -1, drawerPanels.Length);
-            for (int i = 0; i < drawerPanels.Length; i++)
-            {
-                drawerPanels[i].Initialize(openedDrawerIndex==i);
-            }
-
-            if (!isDrawerOpened)
-            {
-                OnDrawerClosed();
-                if (initialLocked)
-                {
-                    OnDrawerLocked();
-                }
-                else
-                {
-                    OnDrawerUnLocked();
-                }
-            }
-        }
-
-
-
-        void OpenDrawer(int index)
-        {
-            index %= drawerPanels.Length; 
-            if (isDrawerOpened)
-            {
-                CurrentPanel.Close();
-            }
-            openedDrawerIndex = index;
-            CurrentPanel.Open();
-        }
-        
-        void InspectDrawer()
-        {
-            CurrentPanel.Inspect();
-        }
-
-        void StopInspecting()
-        {
-            CurrentPanel.StopInspect();
-        }
-
-        private void Focus()
-        {
-            CurrentPanel.Focus();
-            OnFocused();
-        }
-
-        private void FocusToNext()
-        {
-            CurrentPanel.InspectNext();
-            OnFocused();
-        }
-        private void StopFocusing()
-        {
-            CurrentPanel.StopFocus();
-            OnFocusEnded();
-        }
-        
-        private void CloseDrawer()
-        {
-            drawerPanels[openedDrawerIndex].Close();
-            openedDrawerIndex = -1;
-        }
-
-        void OnDrawerOpened()
-        {
-            Interactions = new List<Interaction> {openNextInteraction, focusInteraction, closeInteraction };
-            SetInteractable(true);
-
-        }
-        
-        void OnDrawerClosed()
-        {
-            Interactions = new List<Interaction> { openInteraction };
-            SetInteractable(true);
-        }
-
-        void OnDrawerLocked()
-        {
-            Interactions = new List<Interaction> { unlockInteraction};
-            SetInteractable(true);
-        }
-        
-        void OnDrawerUnLocked()
-        {
-            Interactions = new List<Interaction> { openInteraction};
-            SetInteractable(true);
-        }
-        private void OnFocused()
-        {
-            if (CurrentPanel.InspectedObject != null)
-            {
-                Interactions = new List<Interaction> { inspectInteraction, focusNextInteraction, unfocusInteraction };
-            }
-            else
-            {
-                Interactions = new List<Interaction> { unfocusInteraction };
-            }
-            SetInteractable(true);
-        }
-
-        private void OnFocusEnded()
-        {
-            OnDrawerOpened();
-        }
-        
-        void OnInspected()
-        {
-            SetInspectedInteractions();
-            CurrentPanel.InspectedObject.OnInteracted += OnInspectedInteracted;
-            SetInteractable(true);
-
-        }
-
-        private void SetInspectedInteractions()
-        {
-            Interactions = new List<Interaction> { closeInspectInteraction };
-            foreach (Interaction interaction in CurrentPanel.InspectedObject.Interactions)
-            {
-                Interactions.Add(interaction);
-            }
-        }
-
-        void OnInspectedInteracted()
-        {
-            SetInspectedInteractions();
-            SetInteractable(true);
-        }
-        
-        void OnInspectEnded()
-        {
-            CurrentPanel.InspectedObject.OnInteracted -= OnInspectedInteracted;
-            OnFocused();
-        }
     }
 }
