@@ -10,6 +10,7 @@
         {
             base.OnStateEnter();
             door.DoorLock.OnUnlocked += OnDoorUnlocked;
+            door.DoorLock.OnUnlockFailed += OnDoorUnlockFailed;
             door.DoorLock.Unlock();
         }
         
@@ -18,9 +19,15 @@
             DISC.SetCurrentState(new ClosedDoorState(DISC));
         }
 
+        void OnDoorUnlockFailed()
+        {
+            DISC.SetCurrentState(new LockedDoorState(DISC));
+        }
+        
         public override void OnStateExit()
         {
             door.DoorLock.OnLocked -= OnDoorUnlocked;
+            door.DoorLock.OnUnlockFailed -= OnDoorUnlockFailed;
             base.OnStateExit();
         }
     }

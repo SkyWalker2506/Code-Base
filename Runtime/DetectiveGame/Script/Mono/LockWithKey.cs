@@ -19,8 +19,9 @@ namespace DetectiveGame.Interactable
              else
              {
                  PlayAudio(failedUnlockClip);
-                 InteractionUI.Instance.ShowMessage("Key is Required",1);
-                 Invoke(nameof(CallOnUnlockFailed),1);
+                 int failWaitTime = 2;
+                 InteractionUI.Instance.ShowMessage($"{CollectableManager.Collectables[ID].Name} is Required",failWaitTime);
+                 Invoke(nameof(CallOnUnlockFailed),failWaitTime );
              }
          }
 

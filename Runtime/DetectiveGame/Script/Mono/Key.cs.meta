@@ -1,3 +1,13 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: dc64abdf015741029b579f3459490b40
-timeCreated: 1692015981
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <AudioSource>k__BackingField: {instanceID: 0}
+  - <AudioClip>k__BackingField: {fileID: 8300000, guid: 683ce52e2d512d0458146e76be08fa08, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

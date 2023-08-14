@@ -20,6 +20,15 @@ namespace DetectiveGame.FiniteStateSystem
             Input.OnLeft += InspectPrevious;
             Input.OnRight += InspectNext;
             DISC.Interactable.AddInteractions(drawer.CurrentPanel.InspectedObject.Interactions);
+            if (drawer.CurrentPanel.InspectedObject.transform.TryGetComponent(out ICollectable collectable))
+            {
+                collectable.OnCollected += () =>
+                {
+                    drawer.CurrentPanel.Inspectables.Remove(drawer.CurrentPanel.InspectedObject);
+                    collectable.OnCollected = null;
+                    InspectNext();
+                };
+            }
             drawer.CurrentPanel.InspectedObject.OnInteracted += OnInspectedAction;
             DISC.Interactable.SetInteractable(true);
         }

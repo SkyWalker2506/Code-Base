@@ -5,7 +5,7 @@ namespace InteractionSystem
 {
     public interface ICollectable : IHaveName, IHaveID
     {
-        Action OnCollected{ get; }
+        Action OnCollected{ get; set; }
         void Collect();
     }
 }
