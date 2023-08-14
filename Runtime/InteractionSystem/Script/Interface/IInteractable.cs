@@ -4,12 +4,6 @@ using CodeBase.Core;
 
 namespace InteractionSystem
 {
-    public interface ICollectable : IHaveName
-    {
-        Action OnCollected{ get; }
-        void Collect();
-    }    
-    
     public interface IInteractable : IHaveTransform
     {
         bool IsInteractable{ get; }

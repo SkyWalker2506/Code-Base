@@ -5,9 +5,10 @@ namespace InteractionSystem
 {
     public class InteractionUI : MonoBehaviour
     {
-        [SerializeField] private GameObject UIParent;
+        [SerializeField] private GameObject interactionUIParent;
         [SerializeField] private string defaultInteractionText = "Interact";
         [SerializeField] private InteractionPanel[] interactionPanels;
+        [SerializeField] private MessagePanel messagePanel;
         [SerializeField] private GameObject leftPanel;
         [SerializeField] private GameObject rightPanel;
         public static InteractionUI Instance;
@@ -20,12 +21,12 @@ namespace InteractionSystem
 
         public void ShowInteractionUI(IInteractable interactable)
         {
-            UIParent.SetActive(true);
+            interactionUIParent.SetActive(true);
             DisableInteractionPanels();
             for (int i = 0; i < interactable.Interactions.Count; i++)
             {
-                interactionPanels[i].SetText(interactable.Interactions[i].InteractionText == ""?
-                defaultInteractionText:interactable.Interactions[i].InteractionText);
+                interactionPanels[i].SetText(interactable.Interactions[i].InteractionText == ""? 
+                    defaultInteractionText:interactable.Interactions[i].InteractionText);
                 interactionPanels[i].gameObject.SetActive(true);
             }
             leftPanel.SetActive(Input.OnLeft != null);
@@ -34,15 +35,20 @@ namespace InteractionSystem
 
         public void HideInteractionUI()
         {
-            UIParent.SetActive(false);
+            Instance.interactionUIParent.SetActive(false);
         }
 
-        void DisableInteractionPanels()
+        private void DisableInteractionPanels()
         {
             foreach (InteractionPanel panel in interactionPanels)
             {
                 panel.gameObject.SetActive(false);
             }
+        }
+        
+        public void ShowMessage(string interactionText, float time)
+        {
+            messagePanel.ShowMessage(interactionText,time);
         }
 
     }

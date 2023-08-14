@@ -1,4 +1,3 @@
-using System;
 using DetectiveGame.InteractionSystem;
 using InteractionSystem;
 using UnityEngine;
