@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DetectiveGame.Interactable
 {
-    public class Book : Interactable
+    public class Book : InteractableBase
     {
         [SerializeField] private string bookName;
         private Interaction readInteraction;

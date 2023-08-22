@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     [Serializable]
     public struct TimeEventData

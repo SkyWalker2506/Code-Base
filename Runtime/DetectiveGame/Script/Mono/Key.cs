@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DetectiveGame.Interactable
 {
-    public class Key : Interactable, ICollectable, IAudible
+    public class Key : InteractableBase, ICollectable, IAudible
     {
         [field:SerializeField] public string Name { get; private set; }
         [field:SerializeField] public int ID { get; private set; }

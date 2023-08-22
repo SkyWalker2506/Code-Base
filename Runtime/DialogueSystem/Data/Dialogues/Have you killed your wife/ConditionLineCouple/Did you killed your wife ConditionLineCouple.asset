@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f867355e194618a5b016af9e3c00a2, type: 3}
+  m_Name: Did you killed your wife ConditionLineCouple
+  m_EditorClassIdentifier: 
+  lineConditions: []
+  line: {fileID: 11400000, guid: 1703515067869dd4085d2eaf527fe11b, type: 2}
+  nextLines:
+  - {fileID: 11400000, guid: 71478beb0b20bf34b9e04c975edd7df1, type: 2}

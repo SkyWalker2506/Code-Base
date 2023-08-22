@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DetectiveGame.Interactable
 {
-    public class Door : Interactable
+    public class Door : InteractableBase
     {
         [field:SerializeField] public DoorPanel DoorPanel { get; private set; }
         [field:SerializeField] public LockBase DoorLock{ get; private set; }

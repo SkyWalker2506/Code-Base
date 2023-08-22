@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f867355e194618a5b016af9e3c00a2, type: 3}
+  m_Name: Hi Mr Inglethorp ConditionLineCouple
+  m_EditorClassIdentifier: 
+  lineConditions: []
+  line: {fileID: 11400000, guid: c6d4e2804b7756b41840b3a10f3e5394, type: 2}
+  nextLines:
+  - {fileID: 11400000, guid: 9053d97370ad10c4d891e8619b374f79, type: 2}

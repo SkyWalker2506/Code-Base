@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.Events;
 
-namespace EventSystem
+namespace CodeBase.EventSystem
 {
     [Serializable]
         public struct ScriptableFloatEventData

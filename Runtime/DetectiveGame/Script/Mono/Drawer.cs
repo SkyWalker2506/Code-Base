@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DetectiveGame.Interactable
 {
-    public class Drawer : Interactable
+    public class Drawer : InteractableBase
     {
         [field:SerializeField] public LockBase DrawerLock{ get; private set; }
         [SerializeField] private DrawerPanel[] drawerPanels;

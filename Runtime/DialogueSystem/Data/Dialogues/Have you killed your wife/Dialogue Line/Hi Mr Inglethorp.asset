@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6e71d1f53d4b19a3065e95ffdb4afd, type: 3}
+  m_Name: Hi Mr Inglethorp
+  m_EditorClassIdentifier: 
+  owner: {fileID: 11400000, guid: fcb42cdf967940d40bfb4da914e8a2db, type: 2}
+  <Line>k__BackingField: Hi Mr Inglethorp
+  <OnLineStarted>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnLineEnded>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []

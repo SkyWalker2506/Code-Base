@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DetectiveGame.Interactable
 {
-    public abstract class Interactable : MonoBehaviour, IInteractable
+    public abstract class InteractableBase : MonoBehaviour, IInteractable
     {
         public bool IsInteractable { get; private set; }
         public List<Interaction> Interactions { get; protected set; }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbf769d9b054de38e3141c20e8ddd78, type: 3}
+  m_Name: Have you killed your wife DialogueData
+  m_EditorClassIdentifier: 
+  <Header>k__BackingField: Have you killed your wife
+  startLines:
+  - {fileID: 11400000, guid: dba1aed06caa6f44c96b0adfaced52eb, type: 2}
