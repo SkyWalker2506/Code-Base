@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace DialogueSystem
 {
@@ -6,6 +7,7 @@ namespace DialogueSystem
     {
         IDialogueOwner Owner{ get; }
         string Line{ get; }
+        AudioClip AudioClip{ get; } 
         UnityEvent OnLineStarted{ get; }
         UnityEvent OnLineEnded{ get; }
     }

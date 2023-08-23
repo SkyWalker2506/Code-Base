@@ -14,7 +14,7 @@
         
         void OnDoorLocked()
         {
-            DISC.SetCurrentState(new LockedDoorState(DISC));
+            DSC.SetCurrentState(new LockedDoorState(DSC));
         }
 
         public override void OnStateExit()

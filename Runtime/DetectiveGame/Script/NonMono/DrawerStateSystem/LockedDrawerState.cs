@@ -10,12 +10,12 @@
         {
             base.OnStateEnter();
             drawer.DrawerLock.SetLocked();
-            DISC.Interactable.SetInteraction(new()
+            DSC.Interactable.SetInteraction(new()
             {
                 InteractionText = "Unlock",
-                Interact = () => DISC.SetCurrentState(new UnlockingDrawerState(DISC))
+                Interact = () => DSC.SetCurrentState(new UnlockingDrawerState(DSC))
             });
-            DISC.Interactable.SetInteractable(true);
+            DSC.Interactable.SetInteractable(true);
         }
     }
 }

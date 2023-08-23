@@ -4,6 +4,6 @@ namespace DialogueSystem
 {
     public abstract class ScriptableLineConditionBase : ScriptableObject, ILineCondition
     {
-        public abstract bool IsLineUsable();
+        public abstract bool IsConditionMet();
     }
 }

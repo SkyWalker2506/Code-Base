@@ -14,23 +14,23 @@ namespace DetectiveGame.FiniteStateSystem
             base.OnStateEnter();
             door.DoorPanel.SetClosed();
             
-            DISC.Interactable.SetInteraction( 
+            DSC.Interactable.SetInteraction( 
                 new()
                 {
                     InteractionText = "Open",
-                    Interact = () => DISC.SetCurrentState(new OpeningDoorState(DISC))
+                    Interact = () => DSC.SetCurrentState(new OpeningDoorState(DSC))
                 });
             
             if (door.IsLockable)
             {
-                DISC.Interactable.AddInteraction(
+                DSC.Interactable.AddInteraction(
                     new()
                     {
                         InteractionText = "Lock",
-                        Interact = () => DISC.SetCurrentState(new LockingDoorState(DISC))
+                        Interact = () => DSC.SetCurrentState(new LockingDoorState(DSC))
                     });
             }
-            DISC.Interactable.SetInteractable(true);
+            DSC.Interactable.SetInteractable(true);
         }
     }
 }

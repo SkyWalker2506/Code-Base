@@ -10,27 +10,27 @@
         {
             base.OnStateEnter();
             drawer.CurrentPanel?.SetClosed();
-            DISC.Interactable.SetInteraction( 
+            DSC.Interactable.SetInteraction( 
                 new()
                 {
                     InteractionText = "Open",
                     Interact = () =>
                     {
                         drawer.CurrentDrawerIndex = 0;
-                        DISC.SetCurrentState(new OpeningDrawerState(DISC));
+                        DSC.SetCurrentState(new OpeningDrawerState(DSC));
                     }
                 });
             
             if (drawer.IsLockable)
             {
-                DISC.Interactable.AddInteraction(
+                DSC.Interactable.AddInteraction(
                     new()
                     {
                         InteractionText = "Lock",
-                        Interact = () => DISC.SetCurrentState(new LockingDrawerState(DISC))
+                        Interact = () => DSC.SetCurrentState(new LockingDrawerState(DSC))
                     });
             }
-            DISC.Interactable.SetInteractable(true);
+            DSC.Interactable.SetInteractable(true);
         }
     }
 }

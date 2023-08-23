@@ -15,7 +15,7 @@
         
         void OnInspect()
         {
-            DISC.SetCurrentState(new InspectedDrawerState(DISC));
+            DSC.SetCurrentState(new InspectedDrawerState(DSC));
         }
 
         public override void OnStateExit()

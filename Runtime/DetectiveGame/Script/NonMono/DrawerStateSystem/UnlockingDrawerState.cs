@@ -16,12 +16,12 @@
         
         void OnDrawerUnlocked()
         {
-            DISC.SetCurrentState(new ClosedDrawerState(DISC));
+            DSC.SetCurrentState(new ClosedDrawerState(DSC));
         }
 
         void OnDrawerUnlockFailed()
         {
-            DISC.SetCurrentState(new LockedDrawerState(DISC));
+            DSC.SetCurrentState(new LockedDrawerState(DSC));
         }
         
         public override void OnStateExit()

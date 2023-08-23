@@ -12,14 +12,14 @@ namespace DetectiveGame.FiniteStateSystem
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            DISC.Interactable.SetInteraction(new Interaction
+            DSC.Interactable.SetInteraction(new Interaction
             {
                 InteractionText = "Stop Inspection",
-                Interact = () => DISC.SetCurrentState(new StopInspectingDrawerState(DISC))
+                Interact = () => DSC.SetCurrentState(new StopInspectingDrawerState(DSC))
             });
             Input.OnLeft += InspectPrevious;
             Input.OnRight += InspectNext;
-            DISC.Interactable.AddInteractions(drawer.CurrentPanel.InspectedObject.Interactions);
+            DSC.Interactable.AddInteractions(drawer.CurrentPanel.InspectedObject.Interactions);
             if (drawer.CurrentPanel.InspectedObject.transform.TryGetComponent(out ICollectable collectable))
             {
                 collectable.OnCollected += () =>
@@ -30,24 +30,24 @@ namespace DetectiveGame.FiniteStateSystem
                 };
             }
             drawer.CurrentPanel.InspectedObject.OnInteracted += OnInspectedAction;
-            DISC.Interactable.SetInteractable(true);
+            DSC.Interactable.SetInteractable(true);
         }
 
         void InspectNext()
         {
             drawer.CurrentPanel.InspectNext();
-            DISC.SetCurrentState(new InspectingDrawerState(DISC));
+            DSC.SetCurrentState(new InspectingDrawerState(DSC));
         }
         
         void InspectPrevious()
         {
             drawer.CurrentPanel.InspectPrev();
-            DISC.SetCurrentState(new InspectingDrawerState(DISC));
+            DSC.SetCurrentState(new InspectingDrawerState(DSC));
         }
 
         void OnInspectedAction()
         {
-            DISC.SetCurrentState(new InspectingDrawerState(DISC));
+            DSC.SetCurrentState(new InspectingDrawerState(DSC));
         }
 
         public override void OnStateExit()

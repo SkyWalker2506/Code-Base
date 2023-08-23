@@ -11,12 +11,12 @@
         {
             base.OnStateEnter();
             door.DoorLock.SetLocked();
-            DISC.Interactable.SetInteraction(new()
+            DSC.Interactable.SetInteraction(new()
             {
                 InteractionText = "Unlock",
-                Interact = () => DISC.SetCurrentState(new UnlockingDoorState(DISC))
+                Interact = () => DSC.SetCurrentState(new UnlockingDoorState(DSC))
             });
-            DISC.Interactable.SetInteractable(true);
+            DSC.Interactable.SetInteractable(true);
         }
     }
 }

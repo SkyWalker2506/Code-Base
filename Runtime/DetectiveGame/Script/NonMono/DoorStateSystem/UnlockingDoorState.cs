@@ -16,12 +16,12 @@
         
         void OnDoorUnlocked()
         {
-            DISC.SetCurrentState(new ClosedDoorState(DISC));
+            DSC.SetCurrentState(new ClosedDoorState(DSC));
         }
 
         void OnDoorUnlockFailed()
         {
-            DISC.SetCurrentState(new LockedDoorState(DISC));
+            DSC.SetCurrentState(new LockedDoorState(DSC));
         }
         
         public override void OnStateExit()

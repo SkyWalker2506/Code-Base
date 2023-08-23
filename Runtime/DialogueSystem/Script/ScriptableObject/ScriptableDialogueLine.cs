@@ -12,6 +12,7 @@ namespace DialogueSystem
         [SerializeField] private ScriptableDialogueOwner owner;
         public IDialogueOwner Owner => owner;
         [field: SerializeField] public string Line { get; private set; }
+        [field: SerializeField] public AudioClip AudioClip { get; private set; }
         [field: SerializeField] public UnityEvent OnLineStarted { get;  private set;}
         [field: SerializeField] public UnityEvent OnLineEnded { get;  private set;}
 

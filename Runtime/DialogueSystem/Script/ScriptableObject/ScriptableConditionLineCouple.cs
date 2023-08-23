@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-#endif 
+#endif
+using System.Linq;
 using UnityEngine;
 
 namespace DialogueSystem
@@ -10,6 +11,7 @@ namespace DialogueSystem
     {
         [SerializeField] private ScriptableLineConditionBase[] lineConditions;
         public ILineCondition[] LineConditions => lineConditions;
+        public bool IsLineUsable => LineConditions.All(lc => lc.IsConditionMet());
         [SerializeField] private ScriptableDialogueLine line;
         public IDialogueLine Line => line;
         [SerializeField] private ScriptableConditionLineCouple[] nextLines;

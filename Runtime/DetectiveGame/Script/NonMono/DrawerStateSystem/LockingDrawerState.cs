@@ -15,7 +15,7 @@
         
         void OnDrawerLocked()
         {
-            DISC.SetCurrentState(new LockedDrawerState(DISC));
+            DSC.SetCurrentState(new LockedDrawerState(DSC));
         }
 
         public override void OnStateExit()

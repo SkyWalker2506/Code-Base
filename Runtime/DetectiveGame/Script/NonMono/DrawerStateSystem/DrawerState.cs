@@ -5,10 +5,10 @@ namespace DetectiveGame.FiniteStateSystem
 {
     public abstract class DrawerState : InteractableState
     {
-        protected DrawerStateController DISC => (DrawerStateController)ISC;
+        protected DrawerStateController DSC => (DrawerStateController)ISC;
         protected readonly Drawer drawer;
 
-        protected DrawerState(DrawerStateController  interactableStateController) : base(interactableStateController)
+        protected DrawerState(DrawerStateController interactableStateController) : base(interactableStateController)
         {
             drawer = interactableStateController.Drawer;
         }

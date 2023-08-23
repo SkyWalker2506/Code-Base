@@ -17,7 +17,7 @@ namespace DetectiveGame.FiniteStateSystem
         
         void OnDoorOpened()
         {
-            ISC.SetCurrentState(new OpenedDoorState(DISC));
+            ISC.SetCurrentState(new OpenedDoorState(DSC));
         }
 
         public override void OnStateExit()

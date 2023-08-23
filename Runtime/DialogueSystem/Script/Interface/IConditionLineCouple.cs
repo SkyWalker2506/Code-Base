@@ -3,7 +3,8 @@
     public interface IConditionLineCouple
     {
         ILineCondition[] LineConditions { get; }
-        IDialogueLine Line{ get; }
+        bool IsLineUsable { get; }
+        IDialogueLine Line { get; }
         IConditionLineCouple[] NextLines{ get; }
     }
 }

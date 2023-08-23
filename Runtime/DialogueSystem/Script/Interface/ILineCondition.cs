@@ -2,6 +2,6 @@
 {
     public interface ILineCondition
     {
-        bool IsLineUsable();
+        bool IsConditionMet();
     }
 }

@@ -19,7 +19,7 @@
         {
             if (!drawer.CurrentPanel.IsOpened && drawer.NextPanel.IsOpened)
             {
-                DISC.SetCurrentState(new OpenedDrawerState(DISC));
+                DSC.SetCurrentState(new OpenedDrawerState(DSC));
             }
         }
 

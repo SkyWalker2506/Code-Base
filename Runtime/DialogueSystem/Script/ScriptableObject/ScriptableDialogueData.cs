@@ -1,7 +1,9 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-#endif 
+#endif
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DialogueSystem
 {
@@ -9,10 +11,11 @@ namespace DialogueSystem
     public class ScriptableDialogueData : ScriptableObject, IDialogueData
     {
         [field: SerializeField] public string Header { get; private set; }
-        
-        [SerializeField] private ScriptableConditionLineCouple[] startLines;
+        public IDialogueLine StartLine { get; }
+        public bool IsDialogueAvailable => NextLines.Any(sl => sl.IsLineUsable);
 
-        public  IConditionLineCouple[] StartLines => startLines;
+        [SerializeField] private ScriptableConditionLineCouple[] nextLines;
+        public  IConditionLineCouple[] NextLines => nextLines;
         
                 
 #if UNITY_EDITOR

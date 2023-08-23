@@ -15,7 +15,7 @@
         
         void OnDrawerOpened()
         {
-            DISC.SetCurrentState(new OpenedDrawerState(DISC));
+            DSC.SetCurrentState(new OpenedDrawerState(DSC));
         }
 
         public override void OnStateExit()
