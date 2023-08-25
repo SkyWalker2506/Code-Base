@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace DialogueSystem
+﻿namespace DialogueSystem
 {
     public class DialogueController :  IDialogueController
     {
@@ -16,7 +14,6 @@ namespace DialogueSystem
         public void StartDialogue()
         {
             if (!IsDialogueAvailable) { return; }
-            
         }
     }
 }
