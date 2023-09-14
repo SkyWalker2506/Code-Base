@@ -1,40 +1,47 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PoolSystem
 {
-    public class Pool : MonoBehaviour, IPool
+    public class Pool<T> : IPool where T : MonoBehaviour, IPoolObj 
     {
-        [SerializeField] GameObject poolObjPrefab;
-        [SerializeField] int firstCreatedAmount = 100;
-        [SerializeField] int batchAmount = 25;
-
-
+        private T poolObjPrefab;
+        private int batchAmount;
+        public Stack<IPoolObj> AllObjects { get; set; }
         public Stack<IPoolObj> AvailableObjects { get; set; }
 
-        void Awake()
-        {
-            AvailableObjects = new Stack<IPoolObj>();
-            CreateBatch(firstCreatedAmount);
-        }
 
+        public Pool(IPoolData<T> poolData)
+        {
+            poolObjPrefab = poolData.PoolObjPrefab;
+            batchAmount = poolData.BatchAmount;
+            AllObjects = new Stack<IPoolObj>();
+            AvailableObjects = new Stack<IPoolObj>();
+            CreateBatch(poolData.FirstCreatedAmount);            
+        }
+        
         public void CreateBatch(int amount)
         {
             for (int i = 0; i < amount; i++)
             {
-                var poolObj = Instantiate(poolObjPrefab).GetComponent<IPoolObj>();
+                IPoolObj poolObj = Object.Instantiate(poolObjPrefab).GetComponent<IPoolObj>();
                 ((MonoBehaviour)poolObj).gameObject.SetActive(false);
-                poolObj.Pool = this;
+                AddPoolObjectToPool(poolObj);
                 AvailableObjects.Push(poolObj);
             }
         }
 
+        public void AddPoolObjectToPool(IPoolObj poolObj)
+        {
+            poolObj.Pool = this;
+            AllObjects.Push(poolObj);
+        }
+        
         public IPoolObj Get()
         {
             if (AvailableObjects.Count == 0)
                 CreateBatch(batchAmount);
-            var obj = AvailableObjects.Pop();
+            IPoolObj obj = AvailableObjects.Pop();
             OnGettingObject(obj);
             return obj;
         }
@@ -47,13 +54,13 @@ namespace PoolSystem
 
         public void OnGettingObject(IPoolObj poolObj)
         {
-            var obj = ((MonoBehaviour)poolObj).gameObject;
+            GameObject obj = ((MonoBehaviour)poolObj).gameObject;
             obj.SetActive(true);
         }
 
         public void OnReturningObject(IPoolObj poolObj)
         {
-            var obj = ((MonoBehaviour)poolObj).gameObject;
+            GameObject obj = ((MonoBehaviour)poolObj).gameObject;
             obj.SetActive(false);
         }
     }

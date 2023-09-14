@@ -4,8 +4,9 @@ namespace PoolSystem
 {
     public interface IPool
     {
+        Stack<IPoolObj> AllObjects { get; set; }
         Stack<IPoolObj> AvailableObjects { get; set; }
-        public void CreateBatch(int amount);
+        void CreateBatch(int amount);
         IPoolObj Get();
         void Return(IPoolObj poolObj);
         void OnGettingObject(IPoolObj obj);

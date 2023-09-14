@@ -8,9 +8,10 @@ namespace PoolSystem
 
         public IPool Pool { get; set; }
 
-        public void Release()
+        public virtual void Release()
         {
             Pool.Return(this);
         }
+
     }
 }
