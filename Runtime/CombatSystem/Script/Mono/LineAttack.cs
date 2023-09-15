@@ -7,7 +7,7 @@ namespace CombatSystem
 {
     public class LineAttack : MonoBehaviour, ICanAttack
     {
-        [SerializeField] Pool bulletPool;
+        [SerializeField] Pool<Damager> bulletPool;
         [SerializeField] LineAttackData data;
         [SerializeField] Transform attackPoint;
         Stopwatch timer = new Stopwatch();
@@ -45,8 +45,8 @@ namespace CombatSystem
 
         void ShotBullet(IPoolObj bullet)
         {
-            bullet.Transform.position = attackPoint.position;
-            bullet.Transform.rotation = attackPoint.rotation;
+            bullet.transform.position = attackPoint.position;
+            bullet.transform.rotation = attackPoint.rotation;
         }
     }
 }
